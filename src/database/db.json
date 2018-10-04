@@ -1,0 +1,662 @@
+{
+    "songs": [
+        {
+            "metadata": {
+                "title": "The Weeknd - All I Know Ft. Future",
+                "artist": "",
+                "album": "",
+                "duration": 321.3583673469388
+            },
+            "id": "bf5dbd30a8cb3da6c9a6ab42860a8169",
+            "path": "C:\\Users\\pc\\Desktop\\music\\The Weeknd - All I Know Ft. Future.mp3",
+            "played": 6,
+            "fav": false,
+            "timestamp": 1534171596770,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "The Weeknd - False Alarm (DawnFoxes.com)",
+                "artist": "",
+                "album": "",
+                "duration": 220.55183673469386
+            },
+            "id": "a3b4a1c6d8e24dd76978985090ba38bb",
+            "path": "C:\\Users\\pc\\Desktop\\music\\The Weeknd - False Alarm (DawnFoxes.com).mp3",
+            "played": 12,
+            "fav": false,
+            "timestamp": 1534171596871,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "The Weeknd - Party Monster",
+                "artist": "",
+                "album": "",
+                "duration": 249.2604081632653
+            },
+            "id": "d799997338a600c23f190e7e9efe560e",
+            "path": "C:\\Users\\pc\\Desktop\\music\\The Weeknd - Party Monster.mp3",
+            "played": 24,
+            "fav": true,
+            "timestamp": 1534171596881,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "The Hills",
+                "artist": "The Weeknd",
+                "album": "Hills",
+                "duration": 234.2922448979592,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\190ef2baf7339298d89581a1b1237f99.jpeg"
+            },
+            "id": "190ef2baf7339298d89581a1b1237f99",
+            "path": "C:\\Users\\pc\\Desktop\\music\\The Weeknd - The Hills.mp3",
+            "played": 8,
+            "fav": false,
+            "timestamp": 1534171596930,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Baby",
+                "artist": "Bakermat",
+                "album": "",
+                "duration": 158.48489795918368,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\eb1fdb279b7bad2ddcfe230e14dbfcf4.jpeg"
+            },
+            "id": "eb1fdb279b7bad2ddcfe230e14dbfcf4",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Bakermat - Baby.mp3",
+            "played": 0,
+            "fav": false,
+            "timestamp": 1534171734540,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "River",
+                "artist": "Bishop Briggs",
+                "album": "",
+                "duration": 215.6930612244898,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\63900910ec2fbdd331b21cf582a53126.jpeg"
+            },
+            "id": "63900910ec2fbdd331b21cf582a53126",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Bishop Briggs - River.mp3",
+            "played": 0,
+            "fav": false,
+            "timestamp": 1534171734575,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Childish Gambino - Redbone",
+                "artist": "",
+                "album": "",
+                "duration": 329.11673469387756
+            },
+            "id": "6a725c419e212dbd38e078a14732c9fa",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Childish Gambino - Redbone.mp3",
+            "played": 0,
+            "fav": false,
+            "timestamp": 1534171734580,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Childish Gambino - This Is America",
+                "artist": "",
+                "album": "",
+                "duration": 227.50040816326532
+            },
+            "id": "1a67b0eb3091d7342faf47e33bbbadf5",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Childish Gambino - This Is America.mp3",
+            "played": 0,
+            "fav": false,
+            "timestamp": 1534171734590,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Act III The Reason",
+                "artist": "Dennis Lloyd",
+                "album": "",
+                "duration": 156.13387755102042,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\9d462e14b841662b5c99c813ab0ac2f8.jpeg"
+            },
+            "id": "9d462e14b841662b5c99c813ab0ac2f8",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Dennis Lloyd - Act III The Reason.mp3",
+            "played": 18,
+            "fav": false,
+            "timestamp": 1534171734596,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Dennis Lloyd - ANALYZING",
+                "artist": "Dennis Lloyd",
+                "album": "",
+                "duration": 161.17551020408163
+            },
+            "id": "fd30857afc798f3e7ec8eb2e86438209",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Dennis Lloyd - ANALYZING.mp3",
+            "played": 3,
+            "fav": false,
+            "timestamp": 1534171734598,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Leftovers",
+                "artist": "Dennis Lloyd",
+                "album": "",
+                "duration": 208.24816326530612,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\0ff9eb12f55e51c4c636e4ccb3cf3cdb.jpeg"
+            },
+            "id": "0ff9eb12f55e51c4c636e4ccb3cf3cdb",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Dennis Lloyd - Leftovers.mp3",
+            "played": 16,
+            "fav": false,
+            "timestamp": 1534171734600,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Dennis Lloyd - NEVERMIND",
+                "artist": "Dennis Lloyd",
+                "album": "",
+                "duration": 157.93632653061223
+            },
+            "id": "93f5ceb8b60310d1891f322101b71c5a",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Dennis Lloyd - NEVERMIND.mp3",
+            "played": 1,
+            "fav": false,
+            "timestamp": 1534171734608,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Dennis Lloyd - Think About It",
+                "artist": "Dennis Lloyd",
+                "album": "",
+                "duration": 193.54122448979592
+            },
+            "id": "d2c87e6c2f3b8af7b440bf7a15dd7085",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Dennis Lloyd - Think About It.mp3",
+            "played": 1,
+            "fav": false,
+            "timestamp": 1534171734610,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Music Mix 2018 Best Remixes",
+                "artist": "DJ Silviu M",
+                "album": "",
+                "duration": 3132.2644897959185,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\6ebda1002e435ead5850d59d8e968413.jpeg"
+            },
+            "id": "6ebda1002e435ead5850d59d8e968413",
+            "path": "C:\\Users\\pc\\Desktop\\music\\DJ Silviu M - Music Mix 2018 Best Remixes.mp3",
+            "played": 3,
+            "fav": false,
+            "timestamp": 1534171734618,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "30 for 30 Freestyle",
+                "artist": "Drake",
+                "album": "What a Time To Be Alive",
+                "duration": 256.47020408163263,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\486d19dd51cf0201c038a1eac9b6555f.jpeg"
+            },
+            "id": "486d19dd51cf0201c038a1eac9b6555f",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Drake - 30 for 30 Freestyle.mp3",
+            "played": 0,
+            "fav": false,
+            "timestamp": 1534171734626,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Now & Forever",
+                "artist": "Drake",
+                "album": "If You're Reading This It's Too Late",
+                "duration": 281.3910204081633,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\0b1d33fb94539c5df2babc692989c73e.jpeg"
+            },
+            "id": "0b1d33fb94539c5df2babc692989c73e",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Drake - Now & Forever.mp3",
+            "played": 0,
+            "fav": false,
+            "timestamp": 1534171734630,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Started From the Bottom",
+                "artist": "Drake",
+                "album": "Nothing Was The Same",
+                "duration": 174.1061224489796,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\aab30cbf2cad3d9e9e8d644e84ec9cdb.jpeg"
+            },
+            "id": "aab30cbf2cad3d9e9e8d644e84ec9cdb",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Drake - Started From the Bottom.mp3",
+            "played": 0,
+            "fav": false,
+            "timestamp": 1534171734638,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Jaded",
+                "artist": "EDX",
+                "album": "",
+                "duration": 179.12163265306123,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\8faae4e25598dfae9acd35a93e7d5aa8.jpeg"
+            },
+            "id": "8faae4e25598dfae9acd35a93e7d5aa8",
+            "path": "C:\\Users\\pc\\Desktop\\music\\EDX - Jaded.mp3",
+            "played": 3,
+            "fav": false,
+            "timestamp": 1534171734648,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Viento",
+                "artist": "Gianluca Vacchi",
+                "album": "",
+                "duration": 235.4938775510204,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\a8f76ffa9e9bf488b90a8d87deb4719d.jpeg"
+            },
+            "id": "a8f76ffa9e9bf488b90a8d87deb4719d",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Gianluca Vacchi - Viento.mp3",
+            "played": 0,
+            "fav": false,
+            "timestamp": 1534171734678,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Jaden Smith - Icon",
+                "artist": "Jaden Smith",
+                "album": "SYRE",
+                "duration": 202.24
+            },
+            "id": "0b84062df4799ef9a5c3d0338a1d94e0",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Jaden Smith - Icon.mp3",
+            "played": 0,
+            "fav": false,
+            "timestamp": 1534171734687,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Jaden Smith - Watch Me",
+                "artist": "",
+                "album": "",
+                "duration": 197.7991836734694
+            },
+            "id": "50ea81024b075d2e17df2713c05e35d6",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Jaden Smith - Watch Me.mp3",
+            "played": 0,
+            "fav": false,
+            "timestamp": 1534171734689,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Kanye West - Fade",
+                "artist": "",
+                "album": "",
+                "duration": 226.42938775510203
+            },
+            "id": "ce8c4e74c1e003015fb1362ff04e28c3",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Kanye West - Fade.mp3",
+            "played": 0,
+            "fav": false,
+            "timestamp": 1534171734693,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Wolves (feat. Frank Ocean)",
+                "artist": "Kanye West",
+                "album": "The Life Of Pablo",
+                "duration": 37.903673469387755,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\7d5eb647d270fa14a78750b9a877e742.jpeg"
+            },
+            "id": "7d5eb647d270fa14a78750b9a877e742",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Kanye West - Franks Track feat. Frank Ocean.mp3",
+            "played": 2,
+            "fav": false,
+            "timestamp": 1534171734699,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Freestyle 4",
+                "artist": "Kanye West",
+                "album": "The Life of Pablo",
+                "duration": 122.616,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\5ed0ce01106039411c47fc735b34a732.jpeg"
+            },
+            "id": "5ed0ce01106039411c47fc735b34a732",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Kanye West - Freestyle 4 ft. Desiigner.mp3",
+            "played": 1,
+            "fav": false,
+            "timestamp": 1534171734703,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Ultralight Beam (feat. Chance the Rapper, Kirk Franklin, The-Dream & Kelly Price)",
+                "artist": "Kanye West",
+                "album": "The Life Of Pablo (3-30 Revision)",
+                "duration": 320.7314285714286,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\c98d2c681a07b819db90c89da8b0abab.jpeg"
+            },
+            "id": "c98d2c681a07b819db90c89da8b0abab",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Kanye West - Ultralight Beam ft. Chance the Rapper, Kirk Franklin, The-Dream Kelly Price.mp3",
+            "played": 0,
+            "fav": false,
+            "timestamp": 1534171734709,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Waves",
+                "artist": "Kanye West",
+                "album": "The Life Of Pablo",
+                "duration": 184.08489795918368,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\108ee228d3943515ee310ee7716718b1.jpeg"
+            },
+            "id": "108ee228d3943515ee310ee7716718b1",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Kanye West Ft. Chris Brown - Waves.mp3",
+            "played": 2,
+            "fav": false,
+            "timestamp": 1534171734712,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Born To Die",
+                "artist": "Lana Del Rey",
+                "album": "",
+                "duration": 286.9551020408163,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\4c6be6678e2df66702f1b2e9325e8ff5.jpeg"
+            },
+            "id": "4c6be6678e2df66702f1b2e9325e8ff5",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Lana Del Rey - Born To Die.mp3",
+            "played": 0,
+            "fav": false,
+            "timestamp": 1534171734737,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Groupie Love ft. AsAP Rocky",
+                "artist": "Lana Del Rey",
+                "album": "Lust For Life",
+                "duration": 265.6130612244898,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\369d0142b68a50773403129f75c4d94d.jpeg"
+            },
+            "id": "369d0142b68a50773403129f75c4d94d",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Lana Del Rey - Groupie Love ft. AsAP Rocky.mp3",
+            "played": 0,
+            "fav": false,
+            "timestamp": 1534171734741,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Lust For Life ft. the Weeknd",
+                "artist": "Lana Del Rey",
+                "album": "Lust For Life",
+                "duration": 264.385306122449,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\0623ca668baf2e35f8fd83b10e4840d7.jpeg"
+            },
+            "id": "0623ca668baf2e35f8fd83b10e4840d7",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Lana Del Rey - Lust For Life ft. the Weeknd.mp3",
+            "played": 7,
+            "fav": false,
+            "timestamp": 1534171734743,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Summer Bummer",
+                "artist": "Lana Del Rey",
+                "album": "Lust For Life",
+                "duration": 260.1012244897959,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\3582c9bbab8f3c945f41044593838aaf.jpeg"
+            },
+            "id": "3582c9bbab8f3c945f41044593838aaf",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Lana Del Rey - Summer Bummer.mp3",
+            "played": 1,
+            "fav": false,
+            "timestamp": 1534171734746,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Video Games",
+                "artist": "Lana Del Rey",
+                "album": "",
+                "duration": 286.1714285714286,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\87ef08807e08a3e165f058c2a70d1c6a.jpeg"
+            },
+            "id": "87ef08807e08a3e165f058c2a70d1c6a",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Lana Del Rey - Video Games.mp3",
+            "played": 1,
+            "fav": false,
+            "timestamp": 1534171734746,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Do It Right",
+                "artist": "Martin Solveig ft. Tkay Maidza",
+                "album": "",
+                "duration": 186.01795918367347,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\1a746d7536dd6af813457f5e98e550a7.jpeg"
+            },
+            "id": "1a746d7536dd6af813457f5e98e550a7",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Martin Solveig ft. Tkay Maidza - Do It Right.mp3",
+            "played": 1,
+            "fav": false,
+            "timestamp": 1534171734746,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Seasons",
+                "artist": "Mozzy ft. Sjava Reason",
+                "album": "Black Panther",
+                "duration": 241.84163265306123,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\f459d81a02063a66e5a1eca93ef1fee8.jpeg"
+            },
+            "id": "f459d81a02063a66e5a1eca93ef1fee8",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Mozzy ft. Sjava Reason - Seasons.mp3",
+            "played": 3,
+            "fav": false,
+            "timestamp": 1534171734754,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "WHY",
+                "artist": "NF",
+                "album": "",
+                "duration": 191.89551020408163,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\5382f16723aa2ae6f4317a5f5cfc510b.jpeg"
+            },
+            "id": "5382f16723aa2ae6f4317a5f5cfc510b",
+            "path": "C:\\Users\\pc\\Desktop\\music\\NF - WHY.mp3",
+            "played": 2,
+            "fav": false,
+            "timestamp": 1534171734756,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Post Malone - I Fall Apart",
+                "artist": "",
+                "album": "",
+                "duration": 224.54857142857142
+            },
+            "id": "57b6e8d0df4614532c9c782542eed05b",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Post Malone - I Fall Apart.mp3",
+            "played": 2,
+            "fav": false,
+            "timestamp": 1534171734758,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Season | Mudiza.net",
+                "artist": "Sjava, Reason & Mozzy | Mudiza.net",
+                "album": "Fakaza.com.ng",
+                "duration": 242.46857142857144,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\1c0760028e54b75031e233aa37e84be0.jpeg"
+            },
+            "id": "1c0760028e54b75031e233aa37e84be0",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Sjava-Reason-Mozzy-Season.mp3",
+            "played": 4,
+            "fav": false,
+            "timestamp": 1534171734766,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Shut up",
+                "artist": "Stormzy",
+                "album": "Grim Rock",
+                "duration": 181.1069387755102
+            },
+            "id": "323c44396cdc76b1eda7b31fc68bff5b",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Stormzy - Shut Up.mp3",
+            "played": 5,
+            "fav": false,
+            "timestamp": 1534171734800,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "We're Tired",
+                "artist": "The Blancos ft. Joyner Lucas",
+                "album": "",
+                "duration": 208.14367346938775,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\8be32df24a505f9be117deeca3c853f6.jpeg"
+            },
+            "id": "8be32df24a505f9be117deeca3c853f6",
+            "path": "C:\\Users\\pc\\Desktop\\music\\The Blancos ft. Joyner Lucas - We're Tired.mp3",
+            "played": 3,
+            "fav": false,
+            "timestamp": 1534171734806,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Whiskey Riddim",
+                "artist": "Vato Gonzalez",
+                "album": "",
+                "duration": 155.16734693877552,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\dbf1ae4aaef181f4a7eccc179fe9bfe3.jpeg"
+            },
+            "id": "dbf1ae4aaef181f4a7eccc179fe9bfe3",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Vato Gonzalez - Whiskey Riddim.mp3",
+            "played": 3,
+            "fav": false,
+            "timestamp": 1534171734826,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "Piece of Mind 4",
+                "artist": "Witt Lowry",
+                "album": "",
+                "duration": 244.58448979591836,
+                "picture": "C:\\Users\\pc\\Projects\\music_player\\src\\database\\cover\\8eb8b08182154bd9115190a95d41b720.jpeg"
+            },
+            "id": "8eb8b08182154bd9115190a95d41b720",
+            "path": "C:\\Users\\pc\\Desktop\\music\\Witt Lowry - Piece of Mind 4.mp3",
+            "played": 7,
+            "fav": false,
+            "timestamp": 1534171734859,
+            "playlists": []
+        },
+        {
+            "metadata": {
+                "title": "XXXTENTACION - Look At Me!",
+                "artist": "",
+                "album": "",
+                "duration": 127.42530612244897
+            },
+            "id": "808242993d47ebcf891df27acd1d708a",
+            "path": "C:\\Users\\pc\\Desktop\\music\\XXXTENTACION - Look At Me!.mp3",
+            "played": 10,
+            "fav": false,
+            "timestamp": 1534171734864,
+            "playlists": []
+        }
+    ],
+    "playlists": [],
+    "recents": [
+        "108ee228d3943515ee310ee7716718b1",
+        "7d5eb647d270fa14a78750b9a877e742",
+        "5ed0ce01106039411c47fc735b34a732",
+        "1a746d7536dd6af813457f5e98e550a7",
+        "87ef08807e08a3e165f058c2a70d1c6a",
+        "3582c9bbab8f3c945f41044593838aaf",
+        "0623ca668baf2e35f8fd83b10e4840d7",
+        "190ef2baf7339298d89581a1b1237f99",
+        "8faae4e25598dfae9acd35a93e7d5aa8",
+        "6ebda1002e435ead5850d59d8e968413",
+        "d799997338a600c23f190e7e9efe560e",
+        "a3b4a1c6d8e24dd76978985090ba38bb",
+        "bf5dbd30a8cb3da6c9a6ab42860a8169",
+        "8be32df24a505f9be117deeca3c853f6",
+        "323c44396cdc76b1eda7b31fc68bff5b",
+        "1c0760028e54b75031e233aa37e84be0",
+        "57b6e8d0df4614532c9c782542eed05b",
+        "5382f16723aa2ae6f4317a5f5cfc510b",
+        "f459d81a02063a66e5a1eca93ef1fee8",
+        "dbf1ae4aaef181f4a7eccc179fe9bfe3",
+        "808242993d47ebcf891df27acd1d708a",
+        "8eb8b08182154bd9115190a95d41b720",
+        "fd30857afc798f3e7ec8eb2e86438209",
+        "93f5ceb8b60310d1891f322101b71c5a",
+        "d2c87e6c2f3b8af7b440bf7a15dd7085",
+        "9d462e14b841662b5c99c813ab0ac2f8",
+        "0ff9eb12f55e51c4c636e4ccb3cf3cdb"
+    ],
+    "fav": [
+        "d799997338a600c23f190e7e9efe560e"
+    ],
+    "settings": {
+        "light_theme": false,
+        "checkForUpdates": true
+    },
+    "def": {
+        "volume": 0,
+        "volumeOff": true,
+        "repeat": 1,
+        "shuffle": false,
+        "currentTime": 18.377742,
+        "prevVolume": 1,
+        "renderer": {
+            "component": "playlist",
+            "type": "artists",
+            "prop": "Dennis Lloyd"
+        },
+        "page": {
+            "component": "playlist",
+            "type": "artists",
+            "prop": "Dennis Lloyd"
+        },
+        "filter": "le",
+        "song": "0ff9eb12f55e51c4c636e4ccb3cf3cdb"
+    }
+}

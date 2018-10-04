@@ -1,0 +1,93 @@
+:root {
+    /* Typography */
+    --font: 'Roboto', sans-serif;
+    --size: 14px;
+    --heading: 42px;
+    --color: #fff;
+
+    /* Color Pattern */
+    --light-color: #fff;
+    --dark-color: #000;
+    --success-color: #3cd467;
+    --danger-color: #e32c28;
+    --primary-color: #070707;
+    --secondary-color: #111111;
+    --tertiary-color: #1c1c1c;
+    --quaternary-color: #232323;
+    --quinary-color: #9e9e9e;
+    --primary-gradient: linear-gradient(transparent, rgba(17, 17, 17, .9), var(--secondary-color));
+    --secondary-gradient: linear-gradient(var(--primary-color), var(--secondary-color));
+    --tertiary-gradient: linear-gradient(transparent, rgba(7, 7, 7, .9), var(--primary-color));
+
+    /* Scrollbar */
+    --scrollbar-size: 10px;
+    --scrollbar-track: var(--secondary-color);
+    --scrollbar-thumb: var(--tertiary-color);
+
+    /* Icons */
+    --icon-size: 24px;
+    --icon-small-size: 18px;
+    --icon-extra-small-size: 14px;
+    --icon-large-size: 30px;
+    --icon-extra-large-size: 50px;
+
+    /* Button */
+    --button-color: var(--tertiary-color);
+    --button-hover: var(--quaternary-color);
+    --button-radius: 5px;
+
+    /* Form */
+    --input-color: var(--tertiary-color);
+    --input-focus: var(--quaternary-color);
+    --placeholder-color: var(--quinary-color);
+    --input-radius: 5px;
+    --validation-color: var(--quinary-color);
+
+    /* Notification */
+    --notification-color: #040404;
+    --alert-color: var(--danger-color);
+    --notification-animation-in: NotificationMoveIn .4s ease-in 1;
+    --notification-animation-out: NotificationMoveOut--remove .4s ease-in 1;
+
+    /* Modal */
+    --modal-background-color: rgba(0, 0, 0, .9);
+    --modal-color: var(--primary-color);
+
+    /* Select */
+    --select-color: var(--tertiary-color);
+    --select-disabled-color: var(--quinary-color);
+    --select-hover: var(--quaternary-color);
+    --select-border-color: var(--quaternary-color);
+
+    /* Switch */
+    --switch-background-color: var(--tertiary-color);
+    --switch-on-color: var(--success-color);
+    --switch-off-color: var(--quinary-color);
+    --switch-hover: var(--quaternary-color);
+    --switch-transition: .2s ease-in-out;
+
+    /* Progress */
+    --progress-color: var(--quaternary-color);
+    --progress-bar-color: var(--light-color);
+    --progress-radius: 5px;
+    --metadata-size: 11px;
+    --metadata-color: var(--quinary-color);
+
+    /* Playlist */
+    --playlist-header-gradient: var(--secondary-gradient);
+    --playlist-row-color: var(--secondary-color);
+    --playlist-row-hover: var(--tertiary-color);
+    --playlist-noresult-color: var(--quinary-color);
+
+    /* Grid */
+    --grid-item-color: var(--tertiary-color);
+    --grid-item-gradient: var(--tertiary-gradient);
+    --grid-icon-transition: .2s ease-in-out;
+    --grid-noresult-color: var(--quinary-color);
+
+    /* Aside */
+    --aside-color: var(--secondary-color);
+    --aside-poster-color: var(--tertiary-color);
+    --aside-poster-gradient: var(--primary-gradient);
+
+}

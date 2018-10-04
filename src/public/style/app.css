@@ -1,0 +1,577 @@
+/* General */
+
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+
+* {
+    user-select: none;
+    cursor: default;
+}
+
+input,
+textarea {
+    cursor: text;
+}
+
+html {
+    font-size: var(--size);
+}
+
+body {
+    font-family: var(--font);
+    font-weight: 400;
+    color: var(--color);
+    margin: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+/* Typography */
+
+h1 {
+    font-size: var(--heading);
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+/* Utilities */
+
+img {
+    pointer-events: none;
+}
+
+.drag * {
+    pointer-events: none;
+}
+
+.title>*:first-child {
+    font-weight: 700;
+    padding-bottom: 5px;
+}
+
+/* Icons */
+
+i.material-icons {
+    font-size: var(--icon-size);
+}
+
+i.material-icons.small {
+    font-size: var(--icon-small-size);
+}
+
+i.material-icons.extra-small {
+    font-size: var(--icon-extra-small-size);
+}
+
+i.material-icons.large {
+    font-size: var(--icon-large-size);
+}
+
+i.material-icons.extra-large {
+    font-size: var(--icon-extra-large-size);
+}
+
+i.inactive {
+    color: gray;
+}
+
+/* Buttons */
+
+button {
+    background-color: var(--button-color);
+    color: var(--color);
+    border: none;
+    padding: 8px 22px;
+    border-radius: var(--button-radius);
+    outline: none;
+}
+
+button:hover {
+    background-color: var(--button-hover);
+}
+
+.button-group button,
+.button-group button {
+    margin: 0 5px;
+}
+
+.button-group button:last-child {
+    margin: 0 0 0 5px;
+}
+
+.button-group button:first-child {
+    margin: 0 5px 0 0px;
+}
+
+/* Form */
+
+input {
+    background-color: var(--input-color);
+    color: var(--color);
+    border: none;
+    outline: none;
+    border-radius: var(--input-radius);
+    padding: 7px 10px;
+    width: 250px;
+}
+
+input:focus {
+    background-color: var(--input-focus);
+}
+
+input::placeholder {
+    color: var(--placeholder-color);
+}
+
+input.light {
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+input.light::placeholder {
+    color: var(--dark-color)
+}
+
+label {
+    display: block;
+    padding-bottom: 8px;
+}
+
+.validation {
+    max-width: 250px;
+    color: var(--validation-color);
+    font-size: 12px;
+    padding-bottom: 2px;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+    width: var(--scrollbar-size);
+    height: var(--scrollbar-size);
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+}
+
+/* Notification */
+
+notification-component {
+    position: fixed;
+    display: none;
+    z-index: 999;
+    bottom: 50px;
+    right: 0;
+    padding: 20px 30px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--notification-color);
+}
+
+notification-component[data-open] {
+    display: flex;
+    animation: var(--notification-animation-in);
+}
+
+notification-component[data-alert="true"] {
+    background-color: var(--alert-color);
+}
+
+notification-component[data-hide] {
+    animation: var(--notification-animation-out);
+    animation-fill-mode: both;
+}
+
+notification-component>span {
+    padding-right: 50px;
+}
+
+@keyframes NotificationMoveIn {
+    from {
+        right: -100%;
+    }
+}
+
+@keyframes NotificationMoveOut--remove {
+    to {
+        right: -100%;
+    }
+}
+
+/* Modal */
+
+modal-component:not([data-open="true"]) {
+    display: none;
+}
+
+modal-component {
+    width: 100%;
+    height: 100%;
+    background-color: var(--modal-background-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 998;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+modal-component .modal-box {
+    width: 550px;
+    background-color: var(--modal-color);
+    position: relative;
+    padding: 10px;
+}
+
+modal-component .modal-box .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+modal-component .modal-box .title {
+    text-align: center;
+}
+
+modal-component .modal-box .wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+
+modal-component .modal-box .wrapper>.content>*:not(:last-child) {
+    padding-bottom: 20px;
+}
+
+/* Select */
+
+select-component {
+    position: relative;
+}
+
+select-component article {
+    position: absolute;
+    width: 200px;
+    z-index: 100;
+    right: 0;
+}
+
+select-component article .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+    background-color: var(--select-color);
+}
+
+select-component article .item.disabled {
+    color: var(--select-disabled-color);
+}
+
+select-component article .item.subitem {
+    position: relative;
+}
+
+select-component article .item>.item-text {
+    display: flex;
+    align-items: center;
+}
+
+select-component article .item>.item-text i {
+    margin-right: 5px;
+    width: var(--icon-small-size);
+}
+
+select-component article .item:not(:last-child) {
+    border-bottom: 1px solid var(--select-border-color);
+}
+
+select-component article .item:not(.disabled):hover {
+    background-color: var(--select-hover);
+}
+
+select-component article.subwrapper {
+    left: 100%;
+    display: none;
+}
+
+select-component .subitem:not(.disabled):hover>article.subwrapper {
+    display: block;
+}
+
+/* Switch */
+
+switch-component {
+    display: inline-block;
+}
+
+switch-component:hover .switch {
+    background-color: var(--switch-hover);
+}
+
+switch-component[data-label="true"] {
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+}
+
+switch-component .switch {
+    width: 40px;
+    height: 18px;
+    border-radius: 9px;
+    background-color: var(--switch-background-color);
+    position: relative;
+    overflow: hidden;
+}
+
+switch-component>.switch>.state {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    border-radius: 30px;
+    transition: var(--switch-transition);
+}
+
+switch-component[data-on]>.switch>.state {
+    left: 50%;
+    background-color: var(--switch-on-color);
+}
+
+switch-component[data-off]>.switch>.state {
+    left: 0px;
+    background-color: var(--switch-off-color);
+}
+
+/* Progress */
+
+progress-component {
+    display: flex;
+    align-items: center;
+}
+
+progress-component>span.metadata {
+    font-size: var(--metadata-size);
+    color: var(--metadata-color);
+}
+
+progress-component>i~span.metadata {
+    margin-left: 5px;
+}
+
+progress-component>.wrapper {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+progress-component>.wrapper .progress {
+    width: 100%;
+    height: 4px;
+    background-color: var(--progress-color);
+    border-radius: var(--progress-radius);
+}
+
+progress-component>.wrapper .progress .bar {
+    height: 100%;
+    background-color: var(--progress-bar-color);
+    position: relative;
+    border-radius: var(--progress-radius);
+}
+
+progress-component>.wrapper .progress .bar .thumb {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    transform: translate(50%, -50%);
+    right: 0;
+    top: 50%;
+    opacity: 0;
+}
+
+progress-component>.wrapper .progress .bar .thumb.disabled {
+    display: none;
+}
+
+progress-component>.wrapper:hover .progress .bar .thumb {
+    opacity: 1;
+}
+
+/* Table */
+
+table,
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+    display: block;
+}
+
+playlist-component {
+    display: block;
+}
+
+playlist-component table .noresult {
+    color: var(--playlist-noresult-color);
+    text-align: center;
+    display: none;
+    margin-top: 25px;
+}
+
+playlist-component table {
+    width: 100%;
+}
+
+playlist-component table thead {
+    position: sticky;
+    top: 0;
+    z-index: 101;
+    background: var(--playlist-header-gradient);
+}
+
+playlist-component table thead tr,
+playlist-component table tbody tr {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+}
+
+playlist-component table tbody tr {
+    background-color: var(--playlist-row-color);
+    margin-top: 2px;
+}
+
+playlist-component table tbody tr.active {
+    background-color: var(--playlist-row-hover);
+}
+
+playlist-component table tbody tr:hover {
+    background-color: var(--playlist-row-hover);
+}
+
+playlist-component table thead tr th,
+playlist-component table tbody tr td {
+    font-weight: 400;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    /* overflow: hidden; */
+}
+
+playlist-component table tbody {
+    display: flex;
+    flex-direction: column;
+}
+
+playlist-component table thead tr th i:first-child {
+    margin-right: 5px;
+}
+
+playlist-component table thead tr th i.sort {
+    margin-left: 5px;
+}
+
+/* Grid */
+
+grid-component {
+    display: block;
+}
+
+grid-component>section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 200px);
+    grid-auto-rows: 200px;
+    grid-gap: 60px 60px;
+    justify-content: center;
+}
+
+grid-component>.noresult {
+    color: var(--grid-noresult-color);
+    text-align: center;
+    display: none;
+    margin-top: 25px;
+}
+
+grid-component .item {
+    position: relative;
+    overflow: hidden;
+    line-height: 0;
+    background-color: var(--grid-item-color);
+}
+
+grid-component .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+grid-component .item:before {
+    content: '';
+    width: 100%;
+    height: 70%;
+    background: var(--grid-item-gradient);
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+
+grid-component .item .title {
+    line-height: initial;
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    z-index: 2;
+}
+
+grid-component .item i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    opacity: 0;
+    transition: var(--grid-icon-transition);
+}
+
+grid-component .item:hover i {
+    opacity: 1;
+}

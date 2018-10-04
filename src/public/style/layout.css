@@ -1,0 +1,227 @@
+/* Layout */
+
+main {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 75px;
+    grid-template-columns: 250px 1fr;
+}
+
+main>* {
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* Aside */
+
+main>aside {
+    background-color: var(--aside-color);
+    display: flex;
+    flex-direction: column;
+}
+
+main>aside>.content {
+    width: 100%;
+    height: 100%;
+    padding: 50px 40px;
+    overflow-y: auto;
+}
+
+main>aside>.content input {
+    width: 100%;
+}
+
+main>aside>.content>ul {
+    overflow: hidden;
+}
+
+main>aside>.content>ul li {
+    padding: 3px 0px
+}
+
+main>aside>.content>ul li.active {
+    color: #3cd467;
+    /* TODO modify*/
+}
+
+main>aside>.content>ul ul:not(:empty) {
+    padding-top: 40px;
+}
+
+main>aside>.poster {
+    min-height: 200px;
+    width: 100%;
+    line-height: 0;
+    position: relative;
+    background-color: var(--aside-poster-color);
+}
+
+main>aside>.poster:before,
+main>aside>.poster:after {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 1;
+    background: var(--aside-poster-gradient);
+}
+
+main>aside>.poster:before {
+    width: calc(100% - var(--scrollbar-size));
+    height: 40px;
+    top: -40px;
+    left: 0;
+}
+
+main>aside>.poster:after {
+    width: 100%;
+    height: 70%;
+    bottom: 0;
+    left: 0;
+}
+
+main>aside>.poster img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Section */
+
+main>section {
+    background-color: var(--primary-color);
+    padding: 40px 40px 0px 40px;
+    overflow-y: auto;
+}
+
+main>section .welcome {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main>section .welcome p {
+    margin: 15px 0px
+}
+
+main>section header {
+    position: relative;
+}
+
+main>section header select-component {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+main>section header .content {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+main>section header .content span {
+    margin-top: 10px;
+    display: block;
+    color: var(--quinary-color);
+}
+
+main>section .playlist .filter,
+main>section .collection .filter {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+main>section .playlist .filter input,
+main>section .collection .filter input {
+    width: 300px;
+}
+
+main>section .playlist playlist-component,
+main>section .collection grid-component {
+    margin-top: 40px;
+}
+
+main>section .collection header .content {
+    margin-bottom: 40px;
+}
+
+/* Footer */
+
+main>footer {
+    background-color: var(--secondary-color);
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+main>footer .footer {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+main>footer .footer>aside {
+    min-width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main>footer .footer>aside>.wrapper {
+    width: 120px;
+}
+
+main>footer .footer>aside>.wrapper>.controllers {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 28px;
+    padding-right: 10px;
+}
+
+main>footer .footer>section {
+    width: 100%;
+}
+
+main>footer .footer>section>.wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+main>footer .footer>section>.wrapper>.description {
+    min-width: 150px;
+    display: flex;
+    align-items: center;
+}
+
+main>footer .footer>section>.wrapper>.timeline {
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+main>footer .footer>section>.wrapper>.timeline .controllers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+main>footer .footer>section>.wrapper>.timeline .controllers i {
+    padding: 0 5px;
+}
+
+main>footer .footer>section>.wrapper>.fav {
+    min-width: 120px;
+    padding: 0 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Music Player</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="./style/theme.css">
+    <link rel="stylesheet" href="./style/app.css">
+    <link rel="stylesheet" href="./style/layout.css">
+</head>
+
+<body>
+    <main>
+        <aside>
+            <div class="content">
+                <input type="text" name="search" placeholder="Search" id="search" class="light">
+
+                <ul>
+                    <ul id="predefined-playlist">
+                        <li data-playlist="songs">Songs</li>
+                        <li data-playlist="fav">Favorite</li>
+
+                        <li data-collection="albums">Albums</li>
+                        <li data-collection="artists">Artists</li>
+                    </ul>
+
+
+                    <ul id="options">
+                        <li data-playlist="recents">Recents</li>
+                        <li data-playlist="most played">Most played</li>
+                        <li data-action="setting">Settings</li>
+                        <li data-action="create playlist">Create playlist</li>
+                    </ul>
+                </ul>
+            </div>
+            <div class="poster">
+                <img id="poster" src="" alt="">
+            </div>
+        </aside>
+        <section></section>
+        <footer></footer>
+    </main>
+    <script src="./app.js"></script>
+</body>
+
+</html>

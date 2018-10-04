@@ -1,0 +1,23 @@
+{
+  "name": "music-player",
+  "version": "0.0.0",
+  "description": "Music Player",
+  "main": "/src/main.js",
+  "repository": "https://github.com/kasarda/music-player.git",
+  "author": "'Filip <fkasarda@gmail.com>",
+  "license": "GNU General Public License v3.0",
+  "private": true,
+  "scripts": {
+    "start": "electron src/main.js"
+  },
+  "devDependencies": {
+    "chokidar": "^2.0.4",
+    "electron": "^2.0.5"
+  },
+  "dependencies": {
+    "kasarda": "^1.5.0",
+    "music-metadata": "^2.4.2",
+    "node-json-db": "^0.7.5",
+    "mime-types": "^2.1.19"
+  }
+}
