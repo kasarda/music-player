@@ -8,43 +8,99 @@
     <title>Music Player</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="../../node_modules/kasarda/normalize.css">
     <link rel="stylesheet" href="./style/theme.css">
-    <link rel="stylesheet" href="./style/app.css">
-    <link rel="stylesheet" href="./style/layout.css">
+    <link rel="stylesheet" href="style/layout.css">
+    <link rel="stylesheet" href="style/app.css">
+    <script>
+        document.title = process.env.npm_package_title
+        const theme = localStorage.getItem('theme')
+        if (theme)
+            document.documentElement.dataset.theme = theme
+
+        document.documentElement.dataset.platform = process.platform
+
+    </script>
 </head>
 
 <body>
-    <main>
-        <aside>
-            <div class="content">
-                <input type="text" name="search" placeholder="Search" id="search" class="light">
+    <svg hidden id="icons">
+        <defs>
+            <path d="M11 0v11H0V0h11zM9.899 1.101H1.1V9.9h8.8V1.1z" id="maximize-icon" />
+            <path d="M11 4.399V5.5H0V4.399h11z" id="minimize-icon" />
+            <path d="M6.279 5.5L11 10.221l-.779.779L5.5 6.279.779 11 0 10.221 4.721 5.5 0 .779.779 0 5.5 4.721 10.221 0 11 .779 6.279 5.5z"
+                id="close-icon" />
+            <path xmlns="http://www.w3.org/2000/svg" d="M11 8.798H8.798V11H0V2.202h2.202V0H11v8.798zm-3.298-5.5h-6.6v6.6h6.6v-6.6zM9.9 1.1H3.298v1.101h5.5v5.5h1.1v-6.6z"
+                id="unmaximize-icon" />
+        </defs>
+    </svg>
 
-                <ul>
-                    <ul id="predefined-playlist">
-                        <li data-playlist="songs">Songs</li>
-                        <li data-playlist="fav">Favorite</li>
-
-                        <li data-collection="albums">Albums</li>
-                        <li data-collection="artists">Artists</li>
-                    </ul>
-
-
-                    <ul id="options">
-                        <li data-playlist="recents">Recents</li>
-                        <li data-playlist="most played">Most played</li>
-                        <li data-action="setting">Settings</li>
-                        <li data-action="create playlist">Create playlist</li>
-                    </ul>
+    <div class="view">
+        <main>
+            <nav id="nav">
+                <div class="back-container resize-space">
+                    <div id="back" class="back">
+                        <i class="material-icons">
+                            arrow_back_ios
+                        </i>
+                    </div>
+                </div>
+                <input type="search" id="search" placeholder="Search">
+                <ul id="mainlist">
+                    <li data-key="music">Music</li>
+                    <li data-key="fav">Favorite</li>
+                    <li data-key="albums">Albums</li>
+                    <li data-key="artists">Artists</li>
+                    <li data-key="nowPlaying">Now playing</li>
+                    <li data-key="recents">Recents</li>
+                    <li data-key="mostPlayed">Most played</li>
                 </ul>
+                <hr>
+                <ul id="playlist">
+                    <li id="create-playlist" class="fade">Playlist <i class="material-icons">add</i></li>
+                </ul>
+                <hr>
+                <ul>
+                    <li id="settings" data-key="settings">Settings</li>
+                    <li data-key="about">About</li>
+                </ul>
+            </nav>
+            <section id="content"></section>
+        </main>
+        <footer id="footer">
+            <div class="metadata">
+                <div class="cover" id="cover"></div>
+                <div class="info">
+                    <div class="title">
+                        <span id="title"></span>
+                    </div>
+                    <div id="artist" class="artist"></div>
+                </div>
+                <div class="fav" id="fav"></div>
             </div>
-            <div class="poster">
-                <img id="poster" src="" alt="">
+            <div class="timeline" id="timeline-container">
+                <div class="controllers">
+                    <i class="material-icons fade" id="shuffle">shuffle</i>
+                    <i class="material-icons" id="prev">skip_previous</i>
+                    <i class="material-icons large" id="play">play_arrow</i>
+                    <i class="material-icons" id="next">skip_next</i>
+                    <i class="material-icons fade" id="repeat">repeat</i>
+                </div>
             </div>
-        </aside>
-        <section></section>
-        <footer></footer>
-    </main>
-    <script src="./app.js"></script>
+            <div class="option">
+                <div class="volume" id="volume"></div>
+                <div class="controllers">
+                    <i class="material-icons" id="queue">queue_music</i>
+                    <i class="material-icons fade" id="fullscreen">fullscreen</i>
+                </div>
+            </div>
+        </footer>
+        <div id="close-fullscreen">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
 </body>
 
 </html>

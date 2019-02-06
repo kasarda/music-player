@@ -1,361 +1,191 @@
-const Register = require('../component/register')
-const { createElement } = require('../lib/query')
-const { getImmutable, Render, Component } = require('../lib/common')
-
-const nodes = {
-    aside: document.querySelector('main > aside'),
-    section: document.querySelector('main > section'),
-    footer: document.querySelector('main > footer'),
-    search: document.querySelector('#search'),
-    options: document.querySelector('#options'),
-    poster: document.querySelector('#poster'),
-    get playlist() {
-        return document.querySelectorAll('[data-playlist]')
-    },
-    get collection() {
-        return document.querySelectorAll('[data-collection]')
-    },
-    get action() {
-        return document.querySelectorAll('[data-action]')
-    },
-    get items() {
-        return document.querySelectorAll('aside .content li')
-    },
-    get custom() {
-        return document.querySelectorAll('aside .content outlet-component li[data-id]')
-    }
-}
-
-const modals = {
-    get createPlaylist() {
-        return Register.Modal({
-            title: 'Create playlist',
-            content: [
-                {
-                    role: 'input',
-                    label: 'Name: ',
-                    name: 'name',
-                    prop: {
-                        required: true,
-                        minLength: 3
-                    }
-                }
-            ]
-        })
-    },
-    get renamePlaylist() {
-        return Register.Modal({
-            title: 'Rename playlist',
-            content: [
-                {
-                    role: 'input',
-                    label: 'New name: ',
-                    name: 'name',
-                    prop: {
-                        required: true,
-                        minLength: 3
-                    }
-                }
-            ]
-        })
-    },
-    get removePlaylist() {
-        return Register.Modal({
-            title: 'Are you sure you want to remove this playlist?',
-        })
-    }
-}
+const Outlet = require('../component/outlet')
+const Modal = require('../component/modal')
+const Timeline = require('../component/timeline')
+const Playlist = require('../component/playlist')
+const Collection = require('../component/collection')
+const Select = require('../component/select')
+const Notification = require('../component/notification')
+const Radio = require('../component/radio')
+const Fullscreen = require('../component/fullscreen')
+const Menu = require('../component/menu')
 
 class View {
-    constructor(model, controller) {
+    constructor(model, controller, currentWindow) {
         this.model = model
         this.controller = controller
-        this.outlet
-    }
+        this.notification = this.Notification({
+            time: 2000
+        })
+        this.writeDefData = true
 
-    reverse(songs) {
-        return getImmutable(songs, true).reverse()
-    }
+        this.currentWindow = currentWindow
 
-    get component() {
-        return Register
-    }
-
-    get node() {
-        return nodes
-    }
-
-    get modal() {
-        return modals
-    }
-
-    get state() {
-        return {
-            playlist: {
-                songs: () => ({
-                    title: 'Songs',
-                    select: false,
-                    addSong: true,
-                    addGeneralSong: true,
-                    songs: this.reverse(this.model.loadedSongs),
-                    type: Render.SONGS,
-                    renderer: {
-                        component: Component.PLAYLIST,
-                        type: Render.SONGS
-                    }
-                }),
-                fav: () => ({
-                    title: 'Favorite',
-                    select: false,
-                    addSong: false,
-                    songs: this.reverse(this.model.fav),
-                    type: Render.FAV,
-                    renderer: {
-                        component: Component.PLAYLIST,
-                        type: Render.FAV
-                    }
-                }),
-                recents: () => ({
-                    title: 'Recents',
-                    select: false,
-                    addSong: false,
-                    songs: this.reverse(this.model.recents),
-                    type: Render.RECENTS,
-                    renderer: {
-                        component: Component.PLAYLIST,
-                        type: Render.RECENTS
-                    }
-                }),
-                mostPlayed: () => ({
-                    title: 'Most played',
-                    select: false,
-                    addSong: false,
-                    songs: this.model.mostPlayed,
-                    type: Render.MOST_PLAYED,
-                    renderer: {
-                        component: Component.PLAYLIST,
-                        type: Render.MOST_PLAYED
-                    }
-                }),
-                custom: playlistID => {
-                    const playlist = this.model.getPlaylistWithSongs(playlistID)
-
-                    if (playlist) {
-                        const { name, id, songs } = playlist
-                        return {
-                            title: name,
-                            select: true,
-                            addSong: true,
-                            playlistID: id,
-                            songs,
-                            removeFromPlaylist: true,
-                            type: Render.CUSTOM,
-                            renderer: {
-                                component: Component.PLAYLIST,
-                                type: id
-                            }
-                        }
-                    }
-                    return {}
-                },
-                collection: (title, collectionType, songs) => ({
-                    title,
-                    songs,
-                    collectionType,
-                    type: Render.COLLECTION,
-                    renderer: {
-                        component: Component.PLAYLIST,
-                        type: collectionType,
-                        prop: title
-                    }
-                }),
-                unknown: (collectionType, songs) => ({
-                    title: 'Others',
-                    songs,
-                    collectionType,
-                    type: Render.COLLECTION,
-                    renderer: {
-                        component: Component.PLAYLIST,
-                        type: collectionType,
-                        prop: true
-                    }
-                })
+        this.Node = {
+            section: document.getElementById('content'),
+            nav: document.getElementById('nav'),
+            footer: document.getElementById('footer'),
+            search: document.getElementById('search'),
+            mainlist: document.getElementById('mainlist'),
+            playlist: document.getElementById('playlist'),
+            settings: document.getElementById('settings'),
+            createPlaylist: document.getElementById('create-playlist'),
+            get items() {
+                return document.querySelectorAll('nav li[data-key]')
             },
-            collection: {
-                albums: () => ({
-                    title: 'Albums',
-                    useGridTitle: true,
-                    collection: this.model.albums,
-                    type: Render.ALBUMS,
-                    renderer: {
-                        component: Component.COLLECTION,
-                        type: Render.ALBUMS
-                    }
-                }),
-                artists: () => ({
-                    title: 'Artists',
-                    useGridTitle: false,
-                    collection: this.model.artists,
-                    type: Render.ARTISTS,
-                    renderer: {
-                        component: Component.COLLECTION,
-                        type: Render.ARTISTS
-                    }
-                })
+            get playlistItems() {
+                return Array.from(this.playlist.querySelectorAll('li[data-key]'))
             },
-            search: title => ({
-                title,
-                type: Render.SEARCH,
-                renderer: {
-                    component: Component.SEARCH,
-                    type: title,
-                }
-            }),
-            welcome: () => ({
-                type: Render.WELCOME,
-                renderer: {
-                    component: Component.WELCOME,
-                }
-            })
+            title: document.querySelector('#title'),
+            artist: document.querySelector('footer .artist'),
+            cover: document.querySelector('footer .cover'),
+            favParent: document.getElementById('fav'),
+            get fav() {
+                return this.favParent.firstElementChild
+            },
+            timeline: document.getElementById('timeline-container'),
+            play: document.getElementById('play'),
+            shuffle: document.getElementById('shuffle'),
+            repeat: document.getElementById('repeat'),
+            next: document.getElementById('next'),
+            prev: document.getElementById('prev'),
+            volume: document.getElementById('volume'),
+            queue: document.getElementById('queue'),
+            fullscreen: document.getElementById('fullscreen'),
+            get outlet() {
+                return this.section.querySelector('outlet-component')
+            },
+            get playlistComponent() {
+                return this.section.querySelector('playlist-component')
+            },
+            back: document.querySelector('#back'),
+            closeFullscreen: document.querySelector('#close-fullscreen')
+
+        }
+
+
+        this.folder = document.createElement('input')
+        this.folder.type = 'file'
+        this.folder.webkitdirectory = true
+
+        this.file = document.createElement('input')
+        this.file.type = 'file'
+        this.file.accept = 'audio/*'
+        this.file.multiple = true
+
+    }
+
+    Outlet(options) {
+        return new Outlet(options, this.Node.section, this.model, this.controller)
+    }
+
+    Modal(options) {
+        return new Modal(options)
+    }
+
+    Timeline(options) {
+        return new Timeline(options)
+    }
+
+    Playlist(options) {
+        return new Playlist(options, this.model, this.controller, this)
+    }
+
+    Collection(options) {
+        return new Collection(options, this.controller, this)
+    }
+
+    Select() {
+        return new Select
+    }
+
+    Notification(options) {
+        return new Notification(options)
+    }
+
+    Radio(option) {
+        return new Radio(option)
+    }
+
+    Fullscreen() {
+        return new Fullscreen(this.model, this, this.controller)
+    }
+    Menu() {
+        if (process.platform === 'win32')
+            return new Menu
+    }
+
+    addFolder() {
+        this.folder.click()
+        this.folder.onchange = _ => {
+            for (const { path } of this.folder.files)
+                this.model.addFolder(path)
+
+            this.folder.value = null
         }
     }
 
-    getFiles() {
-        const input = createElement('input', {
-            prop: {
-                type: 'file',
-                multiple: true,
-                accept: 'audio/*'
-            }
+    renamePlaylist(id) {
+        const modal = this.Modal({
+            title: 'Rename playlist',
+            label: 'Name',
+            confirm: 'Rename'
         })
-
-        input.click()
-        return new Promise(resolve => {
-            input.addEventListener('change', _ => {
-                const files = []
-                for (const file of input.files)
-                    files.push(file.path)
-
-                resolve(files)
-            })
-        })
-    }
-
-    createPlaylist() {
-        const modal = this.modal.createPlaylist
-
-        modal.addEventListener('confirm', event => {
-            this.model.addPlaylist(event.detail.name)
-        })
-
         modal.open()
-        document.body.appendChild(modal)
-    }
 
-    renamePlaylist(playlistID) {
-        const modal = this.modal.renamePlaylist
-        modal.addEventListener('confirm', event => {
-            this.model.renamePlaylist(playlistID, event.detail.name)
+        modal.addEventListener('confirm', e => {
+            const { value } = e.detail
+            this.model.renamePlaylist(id, value)
         })
-
-        modal.open()
-        document.body.appendChild(modal)
     }
 
-    removePlaylist(playlistID) {
-        const modal = this.modal.removePlaylist
+    removePlaylist(id) {
+        const modal = this.Modal({
+            title: 'Are you sure?',
+            type: 'confirm',
+            confirm: 'Confirm'
+        })
+        modal.open()
+
         modal.addEventListener('confirm', _ => {
-            this.model.removePlaylist(playlistID)
+            this.model.removePlaylist(id)
+        })
+    }
+
+    removeFolder(folderURL) {
+        const modal = this.Modal({
+            title: `Are you sure you want to remove ${folderURL}?`,
+            type: 'confirm',
+            confirm: 'Remove'
         })
 
         modal.open()
-        document.body.appendChild(modal)
-    }
 
-    async addSong() {
-        const files = await this.getFiles()
-        files.forEach(file => {
-            model.addSong(file).then(_ => {
-                if (this.outlet) {
-                    if (this.outlet.channel === Component.WELCOME)
-                        this.render(Component.PLAYLIST, Render.SONGS)
-                }
+        return new Promise(resolve => {
+            modal.addEventListener('confirm', _ => {
+                this.model.removeFolder(folderURL)
+                resolve(true)
             })
         })
     }
 
-    async attachToPlaylist(playlistID) {
-        const files = await this.getFiles()
-        files.forEach(file => {
-            this.model.attachToPlaylist(file, playlistID)
+    clearData() {
+        const modal = this.Modal({
+            title: 'Are you sure?',
+            type: 'confirm',
+            confirm: 'Clear all'
         })
-    }
+        modal.open()
 
-    getState({
-        component,
-        type,
-        prop
-    } = this.controller.renderer) {
-
-        switch (component) {
-            case Component.PLAYLIST:
-                switch (type) {
-                    case Render.ALBUMS:
-                        if (prop === true)
-                            return this.state.playlist.unknown(type, this.model.albums.unknown)
-                        else
-                            return this.state.playlist.collection(prop, type, this.model.albums.props[prop].songs)
-                    case Render.ARTISTS:
-                        if (prop === true)
-                            return this.state.playlist.unknown(type, this.model.artists.unknown)
-                        else
-                            return this.state.playlist.collection(prop, type, this.model.artists.props[prop].songs)
-                    case Render.SONGS:
-                        return this.state.playlist.songs()
-
-                    case Render.FAV:
-                        return this.state.playlist.fav()
-
-                    case Render.RECENTS:
-                        return this.state.playlist.recents()
-
-                    case Render.MOST_PLAYED:
-                        return this.state.playlist.mostPlayed()
-
-                    default:
-                        return this.state.playlist.custom(type)
-                }
-
-            case Component.COLLECTION:
-                switch (type) {
-                    case Render.ALBUMS:
-                        return this.state.collection.albums()
-
-                    case Render.ARTISTS:
-                        return this.state.collection.artists()
-                }
-                break
-
-            case Component.SEARCH:
-                return this.state.search(type)
-
-            case Component.WELCOME:
-                return this.state.welcome()
-
-            default:
-                return {}
-        }
-    }
-
-    render(component, type, prop) {
-        const state = this.getState({
-            component,
-            type,
-            prop
+        modal.addEventListener('confirm', _ => {
+            this.writeDefData = false
+            this.model.__clear__(true)
         })
-
-        this.outlet.render(component, state)
     }
 }
 
 module.exports = View
+
+
+
+
+

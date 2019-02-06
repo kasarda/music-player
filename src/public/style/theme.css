@@ -1,93 +1,171 @@
 :root {
-    /* Typography */
     --font: 'Roboto', sans-serif;
     --size: 14px;
     --heading: 42px;
     --color: #fff;
+    --h1: 2.5rem;
+    --h2: 1.5rem;
+    --h3: 1rem;
 
-    /* Color Pattern */
+
     --light-color: #fff;
-    --dark-color: #000;
-    --success-color: #3cd467;
-    --danger-color: #e32c28;
-    --primary-color: #070707;
-    --secondary-color: #111111;
-    --tertiary-color: #1c1c1c;
-    --quaternary-color: #232323;
-    --quinary-color: #9e9e9e;
-    --primary-gradient: linear-gradient(transparent, rgba(17, 17, 17, .9), var(--secondary-color));
-    --secondary-gradient: linear-gradient(var(--primary-color), var(--secondary-color));
-    --tertiary-gradient: linear-gradient(transparent, rgba(7, 7, 7, .9), var(--primary-color));
+    --primary-color: #27292a;
+    --secondary-color: #3c3e3f;
+    --tertiary-color: #191c1e;
+    --outline-color: #2196F3;
+    --fade-color: #4f4f4f;
+    --primary-gradient: linear-gradient(transparent, rgba(17, 17, 17, .9), #000);
+    --secondary-gradient: linear-gradient(#000, #111, var(--tertiary-color));
 
-    /* Scrollbar */
+
+    --rule: 1px solid var(--fade-color);
+    --input-color: var(--primary-color);
+    --code-bg: #131617;
+    --code-color: var(--color);
+    --anchor-color:  var(--outline-color);
+    --placeholder: #767676;
+    --button-bg: var(--primary-color);
+    --button-hover: var(--secondary-color);
+    --button-size: .8rem;
+
+
+    --icon-size: 1.5rem;
+    --icon-large: 2.5rem;
+    --icon-medium: 1.8rem;
+    --icon-small: 1rem;
+
+
+    --nav-width: 250px;
+    --nav-bg: var(--primary-color);
+    --nav-color: var(--color);
+    --nav-back-size: 1.1rem;
+    --nav-back-hover: var(--secondary-color);
+    --nav-list-fade-color:#696969;
+    --nav-list-hover: var(--nav-list-fade-color);
+    --nav-list-fade-hover: #767676;
+    --nav-size: .9rem;
+    --nav--list-icon: inherit;
+
+
+    --footer-height: 90px;
+    --footer-bg: var(--secondary-color);
+    --footer-fav-icon: var(--icon-medium);
+    --footer-cover-bg: var(--primary-gradient);
+    --footer-color: var(--color);
+
+
+    --content-bg: var(--tertiary-color);
+    --content-folder-button-border: 1px solid var(--primary-color);
+    --content-folder-button-color:  var(--fade-color);
+    --content-folder-button-hover: #696969;
+    --content-input-color: var(--color);
+    --content-input-placeholder:  var(--fade-color);
+    --content-setting-folder-button-color:  var(--fade-color);
+    --content-setting-folder-button-hover: var(--color);
+    --content-setting-list-icon: inherit;
+    --content-preview-cover-bg: var(--primary-gradient);
+    --content-setting-list-bg: var(--primary-color);
+
+
+    --timeline-duration-size: .8rem;
+    --timeline-duration-color: #a4a4a4;
+    --timeline-progress-bg: var(--fade-color);
+    --timeline-bar-bg: #fff;
+    --timeline-thumb-bg: #fff;
+    --timeline-icon-size: 1.3rem;
+
+    --fullscreen-bg: var(--secondary-gradient);
+    --fullscreen-footer-bg: var(--tertiary-color);
+    --fullscreen-icon-color:  var(--fade-color);
+    --fullscreen-cover-bg: var(--primary-gradient);
+    --fullscreen-icon: 3rem;
+    --fullscreen-close-button-bg: #111;
+    --fullscreen-close-button-color: var(--color);
+    --fullscreen-color: var(--color);
+
+
+    --radio-bg: var(--secondary-color);
+    --radio-active-bg: var(--primary-color);
+
+
+    --modal-bg: #000000c9;
+    --modal-window-bg: var(--tertiary-color);
+    --modal-icon: var(--icon-small);
+    --modal-input-color: var(--color);
+    --modal-input-border:  var(--fade-color);
+
+
+    --playlist-header-icon: inherit;
+    --playlist-header-color: var(--fade-color);
+    --playlist-duration-color: var(--fade-color);
+    --playlist-bottom-border: 1px solid var(--primary-color);
+    --playlist-focus: 1px solid var(--outline-color);
+    --playlist-noresult-color: var(--fade-color);
+    --playlist-row-active-bg: var(--primary-color);
+
+
+    --select-border: var(--primary-color);
+    --select-bg: var(--secondary-color);
+    --select-item-hover: var(--primary-color);
+    --select-icon: inherit;
+    --select-disabled-color: var(--fade-color);
+    --select-box-shadow: 0px 0px 4px var(--tertiary-color);
+
+
+    --collection-item-cover: var(--primary-gradient);
+    --collection-play-icon: 4rem;
+    --collection-color: #fff;
+
+
+    --notification-bg: var(--primary-color);
+    --notification-outline: 1px solid var(--outline-color);
+
+    --table-head-color: var(--fade-color);
+    --table-row-border: 1px solid var(--primary-color);
+
+    --menu-icon-fill: var(--color);
+    --menu-color: var(--fade-color);
+    --menu-button-hover: var(--secondary-color);
+    --menu-button-danger-hover:#e81123e6;
+    --menu-height: 40px;
+
     --scrollbar-size: 10px;
-    --scrollbar-track: var(--secondary-color);
-    --scrollbar-thumb: var(--tertiary-color);
+    --scrollbar-track: var(--primary-color);
+    --scrollbar-thumb: var(--secondary-color);
 
-    /* Icons */
-    --icon-size: 24px;
-    --icon-small-size: 18px;
-    --icon-extra-small-size: 14px;
-    --icon-large-size: 30px;
-    --icon-extra-large-size: 50px;
+    --selection-bg: var(--fade-color);
+    --selection-color: #fff;
+}
 
-    /* Button */
-    --button-color: var(--tertiary-color);
-    --button-hover: var(--quaternary-color);
-    --button-radius: 5px;
+:root[data-theme="light"] {
+    --color: #191c1e;
+    --primary-color: #e8e8e8;
+    --secondary-color: #3c3e3f;
+    --tertiary-color: #ffffff;
+    --fade-color: #8c8c8c;
 
-    /* Form */
-    --input-color: var(--tertiary-color);
-    --input-focus: var(--quaternary-color);
-    --placeholder-color: var(--quinary-color);
-    --input-radius: 5px;
-    --validation-color: var(--quinary-color);
+    --input-color: var(--color);
+    --code-bg: var(--primary-color);
+    --button-hover:#cdcdcd;
+    --rule: 1px solid #cdcdcd;
 
-    /* Notification */
-    --notification-color: #040404;
-    --alert-color: var(--danger-color);
-    --notification-animation-in: NotificationMoveIn .4s ease-in 1;
-    --notification-animation-out: NotificationMoveOut--remove .4s ease-in 1;
+    --nav-back-hover: #cdcdcd;
+    --footer-color: #fff;
 
-    /* Modal */
-    --modal-background-color: rgba(0, 0, 0, .9);
-    --modal-color: var(--primary-color);
+    --timeline-progress-bg: #4f4f4f;
 
-    /* Select */
-    --select-color: var(--tertiary-color);
-    --select-disabled-color: var(--quinary-color);
-    --select-hover: var(--quaternary-color);
-    --select-border-color: var(--quaternary-color);
+    --select-bg: var(--primary-color);
+    --select-item-hover: #cdcdcd;
+    --select-box-shadow: 0px 0px 4px var(--fade-color);
 
-    /* Switch */
-    --switch-background-color: var(--tertiary-color);
-    --switch-on-color: var(--success-color);
-    --switch-off-color: var(--quinary-color);
-    --switch-hover: var(--quaternary-color);
-    --switch-transition: .2s ease-in-out;
+    --radio-bg: #cdcdcd;
 
-    /* Progress */
-    --progress-color: var(--quaternary-color);
-    --progress-bar-color: var(--light-color);
-    --progress-radius: 5px;
-    --metadata-size: 11px;
-    --metadata-color: var(--quinary-color);
+    --fullscreen-bg: linear-gradient(#000, #111, #191c1e);
+    --fullscreen-footer-bg: #191c1e;
+    --fullscreen-color: #fff;
+    --fullscreen-close-button-color: #fff;
 
-    /* Playlist */
-    --playlist-header-gradient: var(--secondary-gradient);
-    --playlist-row-color: var(--secondary-color);
-    --playlist-row-hover: var(--tertiary-color);
-    --playlist-noresult-color: var(--quinary-color);
+    --menu-button-hover: #cdcdcd;
 
-    /* Grid */
-    --grid-item-color: var(--tertiary-color);
-    --grid-item-gradient: var(--tertiary-gradient);
-    --grid-icon-transition: .2s ease-in-out;
-    --grid-noresult-color: var(--quinary-color);
-
-    /* Aside */
-    --aside-color: var(--secondary-color);
-    --aside-poster-color: var(--tertiary-color);
-    --aside-poster-gradient: var(--primary-gradient);
-
+    --scrollbar-thumb: #cdcdcd;
 }

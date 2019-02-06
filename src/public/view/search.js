@@ -1,65 +1,68 @@
-const { createElement } = require('../lib/query')
-const ModelPlaylistHandling = require('./handler')
-const Collection = require('./collection')
+class Search {
+    constructor(outlet, model, view, controller) {
+        this.view = view
+        this.outlet = outlet
+        this.model = model
+        this.controller = controller
 
-class Search extends ModelPlaylistHandling {
-    constructor(...dependencies) {
-        super(...dependencies)
+    }
+    renderWillUnmount() {
+        this.playlist.removeListeners()
+        this.playlist.select.remove()
+        this.view.Node.section.onscroll = null
+        this.view.Node.search.value = ''
     }
 
-    render(state) {
-        this.state = state
+    renderWillMount({ value }) {
+        this.view.Node.search.value = value
+    }
 
-        // Title
-        const title = createElement('h1', {
-            text: state.title
+    render({ value }, name) {
+
+        value = value ? value : ''
+        const header = createElement('h1', 'Search ' + value)
+
+
+        const getSongs = _ => this.model.search(value)
+
+        const { songs, artists, albums } = getSongs()
+
+        this.playlist = this.view.Playlist({
+            songs,
+            name,
+            state: getSongs,
+            useFilter: false
         })
 
-        // Playlist
-        const songSelect = this.songSelect()
-        const playlistTable = this.view.component.Playlist(this.model.loadedSongs, songSelect)
-        this.nodes.playlistTable = playlistTable
+        const albumCollection = this.view.Collection({
+            items: albums,
+            useFilter: false,
+            type: 'album'
+        })
 
-        this.setActiveRow()
-
-        this.controller.audio.addEventListener('play', _ => {
-            this.setActiveRow()
+        const artistsCollection = this.view.Collection({
+            items: artists,
+            useFilter: false,
+            type: 'artist'
         })
 
 
-        // Artists
-        const artistItems = Collection.getItems.call(this, this.model.artists, false, 'artists')
-        const artists = this.view.component.Grid(artistItems)
-
-        // Albums
-        const albumItems = Collection.getItems.call(this, this.model.albums, true, 'albums')
-        const albums = this.view.component.Grid(albumItems)
-
-        // Filter
-        albums.filter(state.title)
-        artists.filter(state.title)
-        playlistTable.filter(state.title)
-
-        // Register Events
-        this.registerEvents()
-
-        return createElement('.search', {
-            child: [
-                createElement('header', {
-                    child: createElement('.content', {
-                        child: title
-                    })
-                }),
-                createElement('.name', { text: 'Songs' }),
-                playlistTable,
-                createElement('.name', { text: 'Artists' }),
-                artists,
-                createElement('.name', { text: 'Albums' }),
-                albums
+        const body = songs.length ? [
+            createElement('h2', 'Artists'),
+            artistsCollection,
+            createElement('h2', 'Albums'),
+            albumCollection,
+            createElement('h2', 'Songs'),
+            this.playlist
+        ] : [
+                createElement('span.noresult', 'No result')
             ]
-        })
+
+        return [
+            header,
+            ...body
+        ]
     }
 }
-
 
 module.exports = Search

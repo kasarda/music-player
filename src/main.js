@@ -1,16 +1,30 @@
 const electron = require('electron')
-const { ipcMain } = require('electron')
 const path = require('path')
 const url = require('url')
+const createDB = require('./public/lib/createDB')
 
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 
+const DB = app.getPath('userData')
+createDB(DB)
 
 let mainWindow
 
 function createWindow() {
-    mainWindow = new BrowserWindow({ width: 1400, height: 800 })
+    mainWindow = new BrowserWindow({
+        width: 1400,
+        height: 800,
+        minWidth: 800,
+        minHeight: 550,
+        backgroundColor: '#191c1e',
+        title: process.env.npm_package_title,
+        frame: 'win32' === process.platform ? false : true,
+        webPreferences: {
+            nodeIntegrationInWorker: true,
+            nodeIntegration: true,
+        }
+    })
 
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'public/index.html'),
@@ -22,7 +36,6 @@ function createWindow() {
         mainWindow = null
     })
 
-    mainWindow.webContents.openDevTools()
 }
 
 app.on('ready', createWindow)
@@ -39,20 +52,13 @@ app.on('activate', _ => {
 
 
 
-// Checker
-const update = require('./backend/check')
-
-ipcMain.on('check_for_updates', event => {
-    update(event.sender)
-})
-
-
-
-
-
-
-
-/* Watcher */
-const chokidar = require('chokidar');
-chokidar.watch(path.join(__dirname, 'public'))
-    .on('change', _ => mainWindow.reload())
+if(process.env.npm_package_production === 'false') {
+   
+    app.on('ready', _ => {
+        mainWindow.webContents.openDevTools()
+    })
+    /* Watcher */
+    const chokidar = require('chokidar');
+    chokidar.watch(path.join(__dirname, 'public'))
+        .on('change', _ => mainWindow.reload())
+}

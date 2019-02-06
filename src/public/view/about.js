@@ -1,0 +1,63 @@
+const { createElement } = require('../lib/common')
+const openBrowser = require('open')
+
+class Help {
+
+    rows(arr) {
+        let rows = []
+        for (const item of arr)
+            rows.push(createElement('tr', [
+                createElement('td', [
+                    createElement('code', item[0])
+                ]),
+                createElement('td', item[1])
+            ]))
+        return rows
+    }
+
+    render() {
+        return [
+            createElement('h1', 'About'),
+            createElement('i', [
+                createElement('span', `version ${process.env.npm_package_version}`),
+                createElement('', '© 2019 Filip Kasarda'),
+                createElement('span', 'See project on '),
+                createElement('a', {
+                    text: 'Github',
+                    on: {
+                        click: _ => openBrowser('https://github.com/kasarda/music-player')
+                    }
+                }),
+            ]),
+            createElement('h2', 'Shortcuts'),
+            createElement('table.table', [
+                createElement('thead', [
+                    createElement('th', 'Shortcut'),
+                    createElement('th', 'Action'),
+                ]),
+                createElement('tbody', this.rows([
+                    ['F1', 'Help'],
+                    ['F11', 'Fullscreen on/off'],
+                    ['Escape', 'Cancel Fullscreen'],
+                    ['F8', 'Volume on/off'],
+                    ['Space', 'Play/Pause'],
+                    ['Ctrl+P', 'Play/Pause'],
+                    ['Ctrl+R', 'Toggle Repeat song'],
+                    ['Ctrl+S', 'Toggle Shuffle'],
+                    ['Ctrl+F', 'Focus on the search field'],
+                    ['Ctrl+L', 'Focus on the filter field'],
+                    ['Ctrl+N', 'Create new playlist'],
+                    ['Ctrl+O', 'Open new folder'],
+                    ['Ctrl+Q', 'Open now playing'],
+                    ['Ctrl+Backspace', 'Browse Back'],
+                    ['Ctrl+Arrow Right', 'Next Track'],
+                    ['Ctrl+Arrow Left', 'Previous Track'],
+                    ['Ctrl+Arrow Up', 'Volume up'],
+                    ['Ctrl+Arrow Down', 'Volume Down']
+                ]))
+            ])
+        ]
+    }
+}
+
+module.exports = Help
