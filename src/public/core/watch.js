@@ -17,8 +17,8 @@ addEventListener('message', _ => {
 
 worker.read('watch', async _ => {
     // 1. Remove songs that are not playable and update metadata
-    const removeChunk = createChunk(10)
-    const updateChunk = createChunk(10)
+    const removeChunk = createChunk(1000)
+    const updateChunk = createChunk(1000)
 
     removeChunk.onFull(songs => {
         worker.send('remove', songs)
@@ -59,7 +59,7 @@ worker.read('watch', async _ => {
     loading = false
     
     // 2. add songs
-    const addChunk = createChunk(100)
+    const addChunk = createChunk(1000)
     addChunk.onFull(songs => {
         worker.send('add', songs)
     })

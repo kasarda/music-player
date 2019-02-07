@@ -1,4 +1,4 @@
 module.exports = {
-    env: 'prod',
+    env: 'dev',
     version: '0.0.0'
 }

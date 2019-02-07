@@ -10,6 +10,7 @@ const { getProgress, getValue } = require('kasarda/node/common')
 const { Ev, Err, createElement, changeIcon, createIcon, Icon, toDurationString, Outlet, Render, Key, isOverflow } = require('./lib/common')
 
 const USER_DATA_PATH = electron.remote.app.getPath('userData')
+const USER_MUSIC_PATH = electron.remote.app.getPath('music')
 
 const worker = new WebWorker('./core/watch.js')
 worker.send('init_data', USER_DATA_PATH)
@@ -685,3 +686,10 @@ window.addEventListener('beforeunload', _ => {
 // Loader
 worker.read('loader:start', _ => view.Node.loader.hidden = false)
 worker.read('loader:end', _ => view.Node.loader.hidden = true)
+
+
+// Add default music folder
+if(!model.folders.includes(USER_MUSIC_PATH) && !('firstLaunch' in localStorage)) {
+    model.addFolder(USER_MUSIC_PATH)
+    localStorage.setItem('firstLaunch', false)
+}
