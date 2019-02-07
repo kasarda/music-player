@@ -339,10 +339,12 @@ class Controller extends EventEmitter {
     }
 
     toggle(paused = this.isPaused) {
-        if (paused)
-            this._audio.play()
-        else
-            this._audio.pause()
+        if (this.hasSrc) {
+            if (paused)
+                this._audio.play()
+            else
+                this._audio.pause()
+        }
         return this
     }
 
