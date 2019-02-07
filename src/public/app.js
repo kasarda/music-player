@@ -2,6 +2,7 @@
  * 
  * create name and fav icon
  * README 
+ * better sorting for example empty goes at the end and sort no of song by CD + fixed error when unknown is before known
  */
 
 const electron = require('electron')
@@ -30,6 +31,8 @@ const model = new Model(worker, USER_DATA_PATH)
 const controller = new Controller(model)
 const view = new View(model, controller, currentWindow)
 
+
+electron.ipcRenderer.send('app:init')
 
 // create custom menu on windows
 view.Menu()
@@ -639,8 +642,16 @@ window.addEventListener('keydown', e => {
 
     if(e.code === 'Escape' && document.activeElement.tagName === 'INPUT')
         document.activeElement.blur()
-
 })
+
+
+electron.ipcRenderer.on('key:VolumeUp', _ => controller.increaseVolume())
+electron.ipcRenderer.on('key:VolumeDown', _ => controller.decreaseVolume())
+electron.ipcRenderer.on('key:VolumeMute', _ => volume.iconElement.click())
+electron.ipcRenderer.on('key:MediaStop', _ => controller.pause())
+electron.ipcRenderer.on('key:MediaPlayPause', _ => controller.toggle())
+electron.ipcRenderer.on('key:MediaNextTrack', _ => controller.next())
+electron.ipcRenderer.on('key:MediaPreviouseTrack', _ => controller.prev())
 
 
 

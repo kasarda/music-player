@@ -711,7 +711,6 @@ select-component .select-item {
     cursor: pointer;
 }
 
-
 select-component .select-item i {
     font-size: var(--select-icon);
 }
@@ -755,6 +754,7 @@ select-component .select-item:not(.disabled):hover > .select-sup {
 collection-component {
     display: block;
     margin-top: 20px;
+    margin-bottom: 50px;
     color: var(--collection-color);
 }
 
@@ -820,7 +820,6 @@ collection-component .collection-item i {
 collection-component .collection-item:hover i {
     opacity: 1;
 }
-
 
 collection-component .collection-item .collection-info .collection-name {
     font-weight: 700;

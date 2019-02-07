@@ -63,3 +63,16 @@ if (env === 'dev') {
     chokidar.watch(path.join(__dirname, 'public'))
         .on('change', _ => mainWindow.reload())
 }
+
+
+app.on('ready', _ => {
+    electron.ipcMain.on('app:init', e => {
+        electron.globalShortcut.register('VolumeUp', _ => e.sender.send('key:VolumeUp'))
+        electron.globalShortcut.register('VolumeDown', _ => e.sender.send('key:VolumeDown'))
+        electron.globalShortcut.register('VolumeMute', _ => e.sender.send('key:VolumeMute'))
+        electron.globalShortcut.register('MediaNextTrack', _ => e.sender.send('key:MediaNextTrack'))
+        electron.globalShortcut.register('MediaPreviousTrack', _ => e.sender.send('key:MediaPreviousTrack'))
+        electron.globalShortcut.register('MediaStop', _ => e.sender.send('key:MediaStop'))
+        electron.globalShortcut.register('MediaPlayPause', _ => e.sender.send('key:MediaPlayPause'))
+    })
+})
