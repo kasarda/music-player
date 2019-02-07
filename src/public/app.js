@@ -4,7 +4,6 @@
  * README 
  * better sorting for example empty goes at the end and sort no of song by CD + fixed error when unknown is before known
  */
-
 const electron = require('electron')
 const WebWorker = require('kasarda/node/worker')
 const { getProgress, getValue } = require('kasarda/node/common')

@@ -239,7 +239,8 @@ function createElement(name = '', props = {
     on: null,
     append: null,
     prepend: null,
-    ref: null
+    ref: null,
+    ontrigger: null
 }, condition = true) {
 
     if (!condition)
@@ -362,6 +363,16 @@ function createElement(name = '', props = {
             prop.split(', ').forEach(event => element.addEventListener(event, e => listener.call(element, e, element)))
 
         }
+    }
+
+    if(typeof props.ontrigger === 'function') {
+        element.addEventListener('click', e => props.ontrigger.call(element, e, element))
+        element.addEventListener('keydown', e => {
+            if(e.code === 'Enter') {
+                props.ontrigger.call(element, e, element)
+                element.blur()
+            }
+        })    
     }
 
     if (props.append) {

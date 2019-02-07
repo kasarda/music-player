@@ -86,16 +86,12 @@ class Settings {
             createElement('h2', 'Clear all data'),
             createElement('button', {
                 text: 'Clear data',
-                on: {
-                    click: _ => this.view.clearData()
-                }
+                ontrigger: _ => this.view.clearData()
             }),
             createElement('h2', 'Debug'),
             createElement('button', {
                 text: 'open dev tools',
-                on: {
-                    click: _ => this.view.currentWindow.openDevTools()
-                }
+                ontrigger: _ => this.view.currentWindow.openDevTools()
             })
 
         ]

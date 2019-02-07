@@ -27,6 +27,8 @@
     "open": "^0.0.5"
   },
   "build": {
-    "appId": "com.music.app"
+    "appId": "com.electron.music",
+    "productName": "Music Player",
+    "copyright": "GNU General Public License v3.0 © 2019 Filip Kasarda"
   }
 }

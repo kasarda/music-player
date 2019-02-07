@@ -49,16 +49,12 @@ class Modal extends HTMLElement {
                     child: [
                         createElement('button.confirm', {
                             text: option.confirm,
-                            on: {
-                                click: _ => this.confirm(),
-                            }
+                            ontrigger: _ => this.confirm()
                         }),
 
                         createElement('button.cancel', {
                             text: 'Cancel',
-                            on: {
-                                click: _ => this.close(),
-                            }
+                            ontrigger: _ => this.close()
                         })
                     ]
                 })

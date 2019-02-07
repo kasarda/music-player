@@ -45,15 +45,11 @@ class Songs {
         const playlistButtons = type === 'playlist' ? [
             createElement('button', {
                 text: 'Rename',
-                on: {
-                    click: _ => this.view.renamePlaylist(id)
-                }
+                ontrigger: _ => this.view.renamePlaylist(id)
             }),
             createElement('button', {
                 text: 'Remove',
-                on: {
-                    click: _ => this.view.removePlaylist(id)
-                }
+                ontrigger: _ => this.view.removePlaylist(id)
             })
         ] : []
 
@@ -70,17 +66,11 @@ class Songs {
 
             name === Key.NOW_PLAYING ? null : createElement('button', {
                 text: 'Play',
-                on: {
-                    click: _ => {
-                        this.playlist._toggle()
-                    }
-                }
+                ontrigger: _ => this.playlist._toggle()
             }),
             [Key.MUSIC, Key.NOW_PLAYING].includes(name) ? null : createElement('button', {
                 text: 'Play next',
-                on: {
-                    click: _ => this.controller.playNext(songs, name)
-                }
+                ontrigger: _ => this.controller.playNext(songs, name)
             }),
             ...playlistButtons,
             this.playlist
@@ -150,20 +140,16 @@ class Songs {
                 header,
                 createElement('button', {
                     text: 'Play',
-                    on: {
-                        click: _ => {
-                            if (collection.albums.length)
-                                albumCollection._playItem(collection)
-                            else
-                                this.playlist.play()
-                        }
+                    ontrigger: _ => {
+                        if (collection.albums.length)
+                            albumCollection._playItem(collection)
+                        else
+                            this.playlist.play()
                     }
                 }),
                 createElement('button', {
                     text: 'Play next',
-                    on: {
-                        click: _ => this.controller.playNext(collection.songs, name)
-                    }
+                    ontrigger: _ => this.controller.playNext(collection.songs, name)
                 }),
                 ...album,
                 ...playlist
