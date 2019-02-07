@@ -79,7 +79,7 @@ class Controller extends EventEmitter {
 
         this.model.on(Ev.REMOVE_SONG, song => {
             if (this.currentID === song.id && this._queue.length > 1)
-                this.next(true)
+                this.next()
             this.remove(song.id)
         })
 

@@ -14,15 +14,13 @@ class Collection extends HTMLElement {
         this.view = view
 
         if (this.useFilter) {
-            const input = createElement('input', {
+            const filter = createElement('input', {
                 append: this,
                 prop: {
                     placeholder: 'Filter'
                 },
                 on: {
-                    input: _ => {
-                        this.filterBy(input.value)
-                    }
+                    input: _ => this.filterBy(filter.value)
                 }
             })
         }
@@ -76,24 +74,24 @@ class Collection extends HTMLElement {
         createElement('.collection-item', {
             className: this.type,
             child: [
-                item.cover ? createElement('img', {
-                    prop: {
-                        src: item.cover
-                    },
+                createElement('img', {
+                    src: item.cover,
                     on: {
-                        error() {
-                            this.remove()
-                        }
+                        error: (_, elem) => elem.remove()
                     }
-                }) : null,
+                }, item.cover),
                 createIcon(Icon.PLAY, {
                     on: {
                         click: _ => this._playItem(item)
                     }
                 }),
                 createElement('.collection-info', [
-                    createElement('.collection-name', item.name || 'Unknown'),
-                    this.type === 'album' ? createElement('', item.artist || 'Unknown') : null
+                    createElement('.collection-name', {
+                        text: item.name || 'Unknown'
+                    }),
+                    createElement('', {
+                        text: item.artist || 'Unknown'
+                    }, this.type === 'album')
                 ])
             ],
             on: {

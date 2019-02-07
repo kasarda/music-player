@@ -52,8 +52,9 @@ app.on('activate', _ => {
 
 
 
-if(process.env.npm_package_production === 'false') {
-   
+const { env } = require('./config')
+if (env === 'dev') {
+
     app.on('ready', _ => {
         mainWindow.webContents.openDevTools()
     })

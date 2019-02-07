@@ -65,8 +65,8 @@ class Select extends HTMLElement {
         }
 
         this._wrapper = createElement('.select-wrapper', {
-            append: this,
             child: items,
+            append: this
         })
 
 

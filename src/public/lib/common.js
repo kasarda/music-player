@@ -87,7 +87,7 @@ const Icon = {
     VOLUME_OFF: 'volume_off',
     NONE: '',
     ADD: 'add',
-    FULLSCREEN:'fullscreen',
+    FULLSCREEN: 'fullscreen',
     FULLSCREEN_EXIT: 'fullscreen_exit',
     LINK: 'link',
     size: {
@@ -235,13 +235,14 @@ function createElement(name = '', props = {
     child: null,
     text: null,
     html: null,
+    src: null,
     on: null,
     append: null,
     prepend: null,
     ref: null
 }, condition = true) {
 
-    if(!condition)
+    if (!condition)
         return null
 
     const selector = parseSelector(name)
@@ -265,6 +266,7 @@ function createElement(name = '', props = {
 
 
 
+
     if (typeof props === 'string' || props instanceof Promise) {
         if (selector.element === 'img')
             promisify(props, val => element.src = val)
@@ -275,6 +277,10 @@ function createElement(name = '', props = {
         props = { child: props }
     else if (props instanceof HTMLElement)
         props = { append: props }
+    else if (!props) {
+        console.warn('PROP is ', props)
+        return element
+    }
 
     if (props.className) {
         let classes = props.className
@@ -296,7 +302,7 @@ function createElement(name = '', props = {
             props.child
                 .filter(child => child)
                 .forEach(child => {
-                    if(child instanceof Promise) {
+                    if (child instanceof Promise) {
                         const comment = new Comment('CREATE-ELEMENT')
                         element.appendChild(comment)
                         child.then(value => {
@@ -304,7 +310,7 @@ function createElement(name = '', props = {
                             comment.remove()
                         })
                     }
-                    else if(['string', 'number'].includes(typeof child)) {
+                    else if (['string', 'number'].includes(typeof child)) {
                         element.appendChild(new Text(child))
                     }
                     else {
@@ -327,7 +333,7 @@ function createElement(name = '', props = {
     if (props.style) {
         for (const style in props.style) {
             let value = props.style[style]
-            if(typeof value === 'object' && 'value' in value)
+            if (typeof value === 'object' && 'value' in value)
                 value = value.value + (value.unit || '')
             promisify(value, val => element.style[style] = val)
         }
@@ -346,6 +352,9 @@ function createElement(name = '', props = {
             promisify(value, val => element[prop] = val)
         }
     }
+
+    if (props.src)
+        promisify(props.src, src => element.src = src)
 
     if (props.on) {
         for (const prop in props.on) {
@@ -412,7 +421,7 @@ function toDurationString(timeInSeconds) {
     const seconds = Math.floor(time - minutes * 60)
 
     const hr = pad(hours)
-    const min = pad(minutes)
+    const min = pad(minutes, hr === '0' ? true : false)
     const sec = pad(seconds, false)
 
     return (hr === '0' ? '' : hr + ':') + min + ':' + sec
@@ -435,7 +444,7 @@ function getFilterText(...value) {
 }
 
 function toPlural(num, text = '') {
-    if(num <= 0)
+    if (num <= 0)
         return ''
     return `${num > 1 ? num + ' ' + text + 's' : num + ' ' + text}`
 }

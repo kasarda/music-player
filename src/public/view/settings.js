@@ -26,7 +26,9 @@ class Settings {
                 folder
             },
             child: [
-                createElement('span', folder),
+                createElement('span', {
+                    text: folder
+                }),
                 createIcon(Icon.CLOSE, {
                     on: {
                         click: _ => this.view.removeFolder(folder)

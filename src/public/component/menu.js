@@ -34,7 +34,9 @@ class Menu extends HTMLElement {
 
         createElement('.menu-container', {
             child: [
-                createElement('.menu-title', document.title),
+                createElement('.menu-title', {
+                    text: document.title
+                }),
                 createElement('.menu-controllers', [
                     createElement('.menu-button', {
                         html: svg('minimize'),

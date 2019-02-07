@@ -1,4 +1,5 @@
 const { createElement } = require('../lib/common')
+const { version } = require('../../config')
 const openBrowser = require('open')
 
 class Help {
@@ -19,7 +20,7 @@ class Help {
         return [
             createElement('h1', 'About'),
             createElement('i', [
-                createElement('span', `version ${process.env.npm_package_version}`),
+                createElement('span', `version ${version}`),
                 createElement('', '© 2019 Filip Kasarda'),
                 createElement('span', 'See project on '),
                 createElement('a', {

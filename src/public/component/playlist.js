@@ -457,7 +457,7 @@ class Playlist extends HTMLElement {
 
     create() {
         const rows = this.createRow(this.songs, true)
-        this.tbody = createElement('tbody', rows)
+        this.tbody = createElement('tbody', { child: rows })
         this.filterElement = createElement('input', {
             on: {
                 input: _ => this.filterBy(this.filterElement.value)

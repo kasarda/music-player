@@ -13,8 +13,8 @@ class Songs {
 
         this.model.on(Ev.REMOVE_PLAYLIST, ({ id }) => {
             if (id === outlet.state.id) {
-                if(!outlet.history.isFirst)
-                outlet.history.back()
+                if (!outlet.history.isFirst)
+                    outlet.history.back()
                 else
                     outlet.render(Render.MUSIC)
             }
@@ -30,7 +30,9 @@ class Songs {
     }
 
     render({ title, id, songs, useFolder, useFilter, type, collection }, name) {
-        this.heading = createElement('h1', title || '')
+        this.heading = createElement('h1', {
+            text: title || ''
+        })
 
         this.playlist = this.view.Playlist({
             songs,
@@ -87,19 +89,19 @@ class Songs {
         if (type === 'album') {
             return [createElement('.preview', [
                 createElement('.cover', [
-                    collection.cover ? createElement('img', {
-                        prop: {
-                            src: collection.cover
-                        },
+                    createElement('img', {
+                        src: collection.cover,
                         on: {
                             error() {
                                 this.remove()
                             }
                         }
-                    }) : null
+                    }, collection.cover)
                 ]),
                 createElement('.info', [
-                    createElement('h1', collection.name || 'Unknown'),
+                    createElement('h1', {
+                        text: collection.name || 'Unknown'
+                    }),
                     createElement('article', [
                         collection.artist ? createElement('span.artist', {
                             text: collection.artist,
@@ -109,7 +111,9 @@ class Songs {
                                 }
                             }
                         }) : null,
-                        createElement('.meta', `${collection.year ? collection.year + ' • ' : ''} ${toPlural(collection.songs.length, 'song')} ${collection.duration ? toTimeString(collection.duration) : ''}`)
+                        createElement('.meta', {
+                            text: `${collection.year ? collection.year + ' • ' : ''} ${toPlural(collection.songs.length, 'song')} ${collection.duration ? toTimeString(collection.duration) : ''}`
+                        })
                     ])
                 ])
             ]), ...body]
@@ -118,8 +122,12 @@ class Songs {
             const header = createElement('.preview', [
                 createElement('.cover.rounded'),
                 createElement('.info', [
-                    createElement('h1', collection.name || 'Unknown'),
-                    createElement('article', `${toPlural(collection.albums.length, 'album')} ${toPlural(collection.singels.length, 'singel')}`)
+                    createElement('h1', {
+                        text: collection.name || 'Unknown'
+                    }),
+                    createElement('article', {
+                        text: `${toPlural(collection.albums.length, 'album')} ${toPlural(collection.singels.length, 'singel')}`
+                    })
                 ])
             ])
 
@@ -161,8 +169,6 @@ class Songs {
                 ...playlist
             ]
         }
-
-
 
 
         return [

@@ -14,7 +14,7 @@ class Modal extends HTMLElement {
         })
 
 
-        this.type  = option.type
+        this.type = option.type
 
         this.input = createElement('input', {
             prop: {
@@ -27,7 +27,7 @@ class Modal extends HTMLElement {
             },
             on: {
                 keydown: (e, elem) => {
-                    if(elem.value !== '' && e.code === 'Enter')
+                    if (elem.value !== '' && e.code === 'Enter')
                         this.confirm()
                 }
             }
@@ -44,7 +44,7 @@ class Modal extends HTMLElement {
                 createElement('.modal-title', {
                     text: option.title
                 }),
-                this.type  !== 'confirm' ? createElement('.modal-body', [this.input]) : null,
+                createElement('.modal-body', [this.input], this.type !== 'confirm'),
                 createElement('.modal-footer', {
                     child: [
                         createElement('button.confirm', {
@@ -76,10 +76,15 @@ class Modal extends HTMLElement {
         document.body.appendChild(this)
         this.input.value = ''
         this.input.focus()
+        document.body.onkeydown = ({code}) => {
+            if (code === 'Escape')
+                this.close()
+        }
     }
 
     close() {
         this.remove()
+        document.body.onkeydown = null
     }
 
     confirm() {
@@ -89,6 +94,12 @@ class Modal extends HTMLElement {
             this.confirmEvent.detail.value = this.input.value
         this.dispatchEvent(this.confirmEvent)
         this.close()
+    }
+
+    onEscape({ code }) {
+        if (code === 'Escape')
+            this.close()
+            console.log('a')
     }
 }
 

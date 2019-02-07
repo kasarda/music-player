@@ -15,7 +15,7 @@ class Radio extends HTMLElement {
                 },
                 child: [
                     createElement('.circle'),
-                    createElement('span', option.label)
+                    createElement('span', { text: option.label })
                 ],
                 on: {
                     click: _ => this.setValue(option.value)
@@ -32,7 +32,7 @@ class Radio extends HTMLElement {
             const radios = this.querySelectorAll('.option-radio')
             radios.forEach(radio => {
                 radio.classList.remove('active')
-                if(radio.dataset.value === value)
+                if (radio.dataset.value === value)
                     radio.classList.add('active')
             })
 

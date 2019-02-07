@@ -5,6 +5,7 @@
  * Git hub repo
  * README
  * 
+ * when adding song make some loading icon somewhere
  */
 
 const electron = require('electron')
@@ -241,11 +242,11 @@ controller.on(Ev.LOAD, async _ => {
     view.Node.favParent.appendChild(fav)
 
     const url = song.metadata.cover
+    view.Node.cover.innerHTML = ''
     if (url) {
         const img = new Image()
         img.src = url
         img.addEventListener('error', _ => view.Node.cover.innerHTML = '')
-        view.Node.cover.innerHTML = ''
         view.Node.cover.appendChild(img)
     }
 
@@ -651,10 +652,12 @@ window.addEventListener('keydown', e => {
             electron.remote.app.quit()
     }
     else {
-        if ((e.ctrlKey && e.code !== 'KeyA') || e.altKey || e.metaKey || e.code.match(/^F.[0-9]{0,2}/)) {
+        if ((e.ctrlKey && e.code !== 'KeyA') || e.altKey || e.metaKey || e.code.match(/^F.[0-9]{0,2}/))
             e.preventDefault()
-        }
     }
+
+    if(e.code === 'Escape' && document.activeElement.tagName === 'INPUT')
+        document.activeElement.blur()
 
 })
 

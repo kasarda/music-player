@@ -78,6 +78,10 @@ class Fullscreen extends HTMLElement {
 
     createItem(id, active) {
         const song = this.model.getSongByID(id)
+
+        if(!song)
+            return null
+
         const { title, cover, artists } = song.metadata
 
         return createElement('.song-wrapper', {
@@ -86,14 +90,18 @@ class Fullscreen extends HTMLElement {
             child: [
                 createElement('.song-cover', {
                     child: [
-                        createElement('img', cover)
+                        createElement('img', {
+                            src: cover
+                        }, cover)
                     ],
                     on: {
                         click: _ => this.controller.play(song.id)
                     }
                 }),
                 createElement('.song-info', [
-                    createElement('.title', title),
+                    createElement('.title', {
+                        text: title || ''
+                    }),
                     createElement('.artist', artists.map(artist => createElement('span', {
                         text: artist,
                         on: {
@@ -106,7 +114,7 @@ class Fullscreen extends HTMLElement {
     }
 
     open() {
-        if(this.controller.queue.length) {
+        if (this.controller.queue.length) {
             changeIcon(this.view.Node.fullscreen, Icon.FULLSCREEN_EXIT)
             this.hidden = false
             this.isOpen = true
@@ -126,7 +134,7 @@ class Fullscreen extends HTMLElement {
     }
 
     toggle() {
-        if(!this.isOpen)
+        if (!this.isOpen)
             this.open()
         else
             this.close()
