@@ -650,7 +650,7 @@ electron.ipcRenderer.on('key:VolumeDown', _ => controller.decreaseVolume())
 electron.ipcRenderer.on('key:VolumeMute', _ => volume.iconElement.click())
 electron.ipcRenderer.on('key:MediaStop', _ => controller.pause())
 electron.ipcRenderer.on('key:MediaPlayPause', _ => {
-    if (!this.controller.queue.length)
+    if (!controller.queue.length)
         View.Node.playlistComponent.play()
     else
         controller.toggle()
