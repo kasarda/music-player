@@ -561,8 +561,8 @@ controller.on(Ev.ERROR, _ => {
 // Keyboard shortcuts
 window.addEventListener('keydown', e => {
     if (document.activeElement.tagName !== 'INPUT') {
-        
-        if(e.code !== 'Tab')
+
+        if (e.code !== 'Tab')
             e.preventDefault()
         switch (e.code) {
             case 'Escape':
@@ -640,7 +640,7 @@ window.addEventListener('keydown', e => {
             e.preventDefault()
     }
 
-    if(e.code === 'Escape' && document.activeElement.tagName === 'INPUT')
+    if (e.code === 'Escape' && document.activeElement.tagName === 'INPUT')
         document.activeElement.blur()
 })
 
@@ -649,7 +649,12 @@ electron.ipcRenderer.on('key:VolumeUp', _ => controller.increaseVolume())
 electron.ipcRenderer.on('key:VolumeDown', _ => controller.decreaseVolume())
 electron.ipcRenderer.on('key:VolumeMute', _ => volume.iconElement.click())
 electron.ipcRenderer.on('key:MediaStop', _ => controller.pause())
-electron.ipcRenderer.on('key:MediaPlayPause', _ => controller.toggle())
+electron.ipcRenderer.on('key:MediaPlayPause', _ => {
+    if (!this.controller.queue.length)
+        View.Node.playlistComponent.play()
+    else
+        controller.toggle()
+})
 electron.ipcRenderer.on('key:MediaNextTrack', _ => controller.next())
 electron.ipcRenderer.on('key:MediaPreviouseTrack', _ => controller.prev())
 
