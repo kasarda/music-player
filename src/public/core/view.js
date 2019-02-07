@@ -58,6 +58,7 @@ class View {
                 return this.section.querySelector('playlist-component')
             },
             back: document.querySelector('#back'),
+            loader: document.querySelector('#loader'),
             closeFullscreen: document.querySelector('#close-fullscreen')
 
         }

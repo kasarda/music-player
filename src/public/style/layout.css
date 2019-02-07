@@ -52,6 +52,8 @@
     top: 0;
     left: 0;
     -webkit-app-region: drag;
+    display: flex;
+    justify-content: space-between;
 }
 
 #nav .back {
@@ -65,6 +67,45 @@
 
 #nav .back:hover {
     background-color: var(--nav-back-hover);
+}
+
+#loader {
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    align-self: center;
+    margin-right: 15px;
+    position: relative;
+}
+
+#loader::before,
+#loader::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  border: 3px solid transparent;
+}
+
+#loader::after {
+  border-color: transparent;
+}
+
+#loader::before {
+  z-index: 2;
+  border-color: var(--outline-color);
+  border-bottom-color: transparent;
+  animation: load .8s infinite linear;
+}
+
+@keyframes load {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 

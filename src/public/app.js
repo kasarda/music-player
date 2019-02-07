@@ -1,11 +1,7 @@
 /**
  * 
- * create name anf fav icon
- * Builder options and electron options for production
- * Git hub repo
- * README
- * 
- * when adding song make some loading icon somewhere
+ * create name and fav icon
+ * README 
  */
 
 const electron = require('electron')
@@ -432,21 +428,6 @@ view.Node.fullscreen.addEventListener('click', _ => fullscreen.toggle())
 controller.on([Ev.SET_QUEUE, Ev.ADD_QUEUE], _ => view.Node.fullscreen.classList.remove('fade'))
 controller.on(Ev.EMPTY_PLAYLIST, _ => view.Node.fullscreen.classList.add('fade'))
 
-void (_ => {
-    document.body.dataset.moving = false
-    let run = true
-    document.addEventListener('mousemove', _ => {
-        document.body.dataset.moving = true
-        if (run) {
-            setTimeout(_ => {
-                document.body.dataset.moving = false
-                run = true
-            }, 2000)
-        }
-        run = false
-    })
-})()
-
 view.Node.closeFullscreen.addEventListener('click', _ => fullscreen.close())
 
 
@@ -687,3 +668,10 @@ window.addEventListener('beforeunload', _ => {
         })
     }
 })
+
+
+
+
+// Loader
+worker.read('loader:start', _ => view.Node.loader.hidden = false)
+worker.read('loader:end', _ => view.Node.loader.hidden = true)

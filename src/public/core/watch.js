@@ -28,24 +28,36 @@ worker.read('watch', async _ => {
         worker.send('update', songs)
     })
 
+    let loading = false
+
     for (const song of model.songs) {
         const isExist = await model.isSongExist(song.path)
         if (!isExist) {
             removeChunk.add(song.id)
+            if(!loading) {
+                worker.send('loader:start')
+                loading = true
+            }
         }
         else {
             const metadata = await model.getMetadata(song.path, null, true)
             const metadataDB = song.metadata
             metadata.cover = metadataDB.cover
 
-            if (!model.db._.isEqual(metadata, metadataDB))
+            if (!model.db._.isEqual(metadata, metadataDB)) {
                 updateChunk.add({ id: song.id, metadata })
+                if (!loading) {
+                    worker.send('loader:start')
+                    loading = true
+                }
+            }
         }
     }
     removeChunk.end()
     updateChunk.end()
-
-
+    worker.send('loader:end')
+    loading = false
+    
     // 2. add songs
     const addChunk = createChunk(100)
     addChunk.onFull(songs => {
@@ -59,12 +71,19 @@ worker.read('watch', async _ => {
         for (const path of songs) {
             if (!disabled.includes(path) && !model.isSongInDB({ path })) {
                 const song = await model.createSong(path, folder)
-                if (song)
+                if (song) {
                     addChunk.add(song)
+                    if(!loading) {
+                        worker.send('loader:start')
+                        loading = true
+                    }
+                }
             }
         }
     }
     addChunk.end()
+    worker.send('loader:end')
+
 })
 
 
@@ -98,6 +117,7 @@ async function createSongs(files, folder, playlistID) {
             })
         }
     })
+    worker.send('loader:start')
 
     for (const file of files) {
         const song = await model.createSong(file, folder)
@@ -105,4 +125,5 @@ async function createSongs(files, folder, playlistID) {
             chunk.add(song)
     }
     chunk.end()
+    worker.send('loader:end')
 }

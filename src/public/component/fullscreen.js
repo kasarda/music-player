@@ -1,4 +1,6 @@
 const { createElement, createIcon, Icon, Ev, getArraySurrounding, Render, changeIcon } = require('../lib/common')
+
+let _run = true
 class Fullscreen extends HTMLElement {
     constructor(model, view, controller) {
         super()
@@ -79,7 +81,7 @@ class Fullscreen extends HTMLElement {
     createItem(id, active) {
         const song = this.model.getSongByID(id)
 
-        if(!song)
+        if (!song)
             return null
 
         const { title, cover, artists } = song.metadata
@@ -113,6 +115,15 @@ class Fullscreen extends HTMLElement {
         })
     }
 
+    watchMoving() {
+        document.body.dataset.moving = false
+        document.addEventListener('mousemove', this._movingListener)
+    }
+
+    unwatchMoving() {
+        document.removeEventListener('mousemove', this._movingListener)
+    }
+
     open() {
         if (this.controller.queue.length) {
             changeIcon(this.view.Node.fullscreen, Icon.FULLSCREEN_EXIT)
@@ -120,6 +131,7 @@ class Fullscreen extends HTMLElement {
             this.isOpen = true
             this.create()
             document.body.classList.add('fullscreen')
+            this.watchMoving()
             this.view.currentWindow.setFullScreen(true)
         }
     }
@@ -130,6 +142,7 @@ class Fullscreen extends HTMLElement {
         this.isOpen = false
         this.slider.innerHTML = ''
         document.body.classList.remove('fullscreen')
+        this.unwatchMoving()
         this.view.currentWindow.setFullScreen(false)
     }
 
@@ -146,6 +159,17 @@ class Fullscreen extends HTMLElement {
         this.items = this.itemIDs.map(id => this.createItem(id, this.controller.currentID === id))
         this.items.forEach(item => this.slider.appendChild(item))
         this.centerActive()
+    }
+
+    _movingListener() {
+        document.body.dataset.moving = true
+        if (_run) {
+            setTimeout(_ => {
+                document.body.dataset.moving = false
+                _run = true
+            }, 2000)
+        }
+        _run = false
     }
 }
 
