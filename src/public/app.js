@@ -649,12 +649,7 @@ electron.ipcRenderer.on('key:VolumeUp', _ => controller.increaseVolume())
 electron.ipcRenderer.on('key:VolumeDown', _ => controller.decreaseVolume())
 electron.ipcRenderer.on('key:VolumeMute', _ => volume.iconElement.click())
 electron.ipcRenderer.on('key:MediaStop', _ => controller.pause())
-electron.ipcRenderer.on('key:MediaPlayPause', _ => {
-    if (!controller.queue.length && view.Node.playlistComponent)
-        view.Node.playlistComponent.play()
-    else
-        controller.toggle()
-})
+electron.ipcRenderer.on('key:MediaPlayPause', _ => controller.toggle())
 electron.ipcRenderer.on('key:MediaNextTrack', _ => controller.next())
 electron.ipcRenderer.on('key:MediaPreviouseTrack', _ => controller.prev())
 
