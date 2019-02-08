@@ -197,10 +197,9 @@ class Playlist extends HTMLElement {
 
     addRow(songs, unshift = true) {
         const rows = this.createRow(songs)
-
         for (const row of rows.reverse()) {
             if (unshift)
-                this.tbody.insertBefore(row, this.tbody.firstChild)
+                this.tbody.insertBefore(row, this.tbody.firstChild || null)
             else
                 this.tbody.appendChild(row)
         }

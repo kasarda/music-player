@@ -1,6 +1,7 @@
 const Model = require('./model')
 const path = require('path')
 const getMetadata = require('music-metadata')
+const { Ev, Err } = require('../../lib/common')
 
 class WatchModel extends Model {
     constructor(worker, USER_DATA_PATH) {
@@ -92,7 +93,7 @@ class WatchModel extends Model {
                     }
                     catch (err) {
                         console.error('Cant create image', err)
-                        if(err.code === 'ENOENT') {
+                        if (err.code === 'ENOENT') {
                             this.fs.createFiles({
                                 type: 'dir',
                                 path: this.COVER_PATH
@@ -110,7 +111,6 @@ class WatchModel extends Model {
                 }
             }
 
-
             const { name } = path.parse(url)
             const title = data.common.title || name
             const duration = data.format.duration || null
@@ -118,6 +118,7 @@ class WatchModel extends Model {
             const albumartist = data.common.albumartist || null
             const album = data.common.album || null
             const track = data.common.track || { no: null, of: null }
+            const disk = data.common.disk || { no: null, of: null }
             const year = data.common.year || null
 
             return {
@@ -126,6 +127,7 @@ class WatchModel extends Model {
                 albumartist,
                 album,
                 track,
+                disk,
                 year,
                 duration,
                 cover

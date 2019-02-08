@@ -11,8 +11,7 @@ class MainModel extends Model {
 
             this.worker.read('add', songs => {
                 const addedSongs = this._pushSongs(songs)
-                this.db.read() 
-
+                // this.db.read()
                 if (addedSongs.length)
                     this.dispatchEvent(Ev.ADD_SONG, addedSongs)
             })
@@ -571,7 +570,7 @@ class MainModel extends Model {
 
         songs.forEach(song => {
             const resultList = albums.map(albumObj => albumObj.name)
-
+            const no = parseFloat(`${song.metadata.disk.no || 1}`  + song.metadata.track.no)
 
             if (!song.metadata.album) {
                 unknown.push(song.id)
@@ -580,7 +579,7 @@ class MainModel extends Model {
                 albums.push({
                     name: song.metadata.album,
                     artist: song.metadata.albumartist,
-                    songs: [{ id: song.id, no: song.metadata.track.no }],
+                    songs: [{ id: song.id, no }],
                     duration: song.metadata.duration,
                     year: song.metadata.year,
                     cover: song.metadata.cover
@@ -592,7 +591,7 @@ class MainModel extends Model {
                 })
 
                 if (albumObject) {
-                    albumObject.songs.push({ id: song.id, no: song.metadata.track.no })
+                    albumObject.songs.push({ id: song.id, no })
                     albumObject.duration += song.metadata.duration
                 }
             }
@@ -640,8 +639,9 @@ class MainModel extends Model {
         const unknown = []
 
         songs.forEach(song => {
-            const { album, albumartist, year, track } = song.metadata
+            const { album, albumartist, year, track, disk } = song.metadata
             const { id } = song
+            const no = parseFloat(`${disk.no || 1}` + track.no)
 
             if (song.metadata.artists.length) {
                 song.metadata.artists.forEach(artist => {
@@ -651,14 +651,14 @@ class MainModel extends Model {
                     if (!names.includes(artist)) {
                         artists.push({
                             name: artist,
-                            songs: [{ id, year, album, no: track.no }],
+                            songs: [{ id, year, album, no }],
                             albums: album && isAlbumArtist ? [{ name: album, albumartist, year }] : [],
                             singels: !album || !isAlbumArtist ? [id] : []
                         })
                     }
                     else {
                         const artistObject = this._.find(artists, { name: artist })
-                        artistObject.songs.push({ id, year, album, no: track.no })
+                        artistObject.songs.push({ id, year, album, no })
                         if (album && !artistObject.albums.map(a => a.name).includes(album) && isAlbumArtist) {
                             artistObject.albums.push({ name: album, albumartist, year })
                         }

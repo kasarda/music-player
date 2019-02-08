@@ -7,7 +7,6 @@ const fs = require('../../lib/fs')
 const EventListener = require('../../lib/event')
 const createDB = require('../../lib/createDB')
 
-
 class Model extends EventListener {
     constructor(worker, USER_DATA_PATH) {
         super({ logError: true })

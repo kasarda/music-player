@@ -116,7 +116,7 @@ class Songs {
                         text: collection.name || 'Unknown'
                     }),
                     createElement('article', {
-                        text: `${toPlural(collection.albums.length, 'album')} ${toPlural(collection.singels.length, 'singel')}`
+                        text: `${toPlural(collection.albums.length, 'album')} ${toPlural(collection.singels.length, 'single')}`
                     })
                 ])
             ])
@@ -132,7 +132,7 @@ class Songs {
             ] : []
 
             const playlist = songs.length ? [
-                createElement('h2', 'Singels'),
+                createElement('h2', 'Singles'),
                 this.playlist
             ] : []
 

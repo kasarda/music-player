@@ -107,7 +107,7 @@ worker.read('reset cover', path => {
 
 
 async function createSongs(files, folder, playlistID) {
-    const chunk = createChunk(100)
+    const chunk = createChunk(500)
     chunk.onFull(songs => {
         worker.send('add', songs)
         if (playlistID) {

@@ -3,6 +3,7 @@
  * create name and fav icon
  * README 
  * better sorting for example empty goes at the end and sort no of song by CD + fixed error when unknown is before known
+ * rename singles for singels
  */
 const electron = require('electron')
 const WebWorker = require('kasarda/node/worker')
@@ -450,6 +451,7 @@ window.addEventListener('drop', e => {
 
     const id = e.dataTransfer.getData('text')
     const playlistID = e.target.dataset.id
+    const viewPlaylist = (outlet.key || '').replace('playlist-', '')
 
 
     if (model.isID(id) && view.Node.playlistItems.includes(e.target))
@@ -464,14 +466,28 @@ window.addEventListener('drop', e => {
                 if (!file.type && file.size % 4096 === 0) {
                     if (view.Node.playlistItems.includes(e.target))
                         model.addFolder(file.path, playlistID)
+                    else if (model.isID(viewPlaylist))
+                        model.addFolder(file.path, viewPlaylist)
                     else
                         model.addFolder(file.path)
                 }
                 else if (isAudio) {
-                    if (view.Node.playlistItems.includes(e.target))
-                        model.addSong(file.path, undefined, playlistID)
-                    else
-                        model.addSong(file.path)
+                    const song = model.getSongByPath(file.path)
+
+                    if (song) {
+                        if (view.Node.playlistItems.includes(e.target))
+                            model.addSongToPlaylist(song.id, playlistID)
+                        else if (model.isID(viewPlaylist))
+                            model.addSongToPlaylist(song.id, viewPlaylist)
+                    }
+                    else {
+                        if (view.Node.playlistItems.includes(e.target))
+                            model.addSong(file.path, undefined, playlistID)
+                        else if (model.isID(viewPlaylist))
+                            model.addSong(file.path, undefined, viewPlaylist)
+                        else
+                            model.addSong(file.path)
+                    }
                 }
             }
         }
@@ -651,7 +667,7 @@ electron.ipcRenderer.on('key:VolumeMute', _ => volume.iconElement.click())
 electron.ipcRenderer.on('key:MediaStop', _ => controller.pause())
 electron.ipcRenderer.on('key:MediaPlayPause', _ => controller.toggle())
 electron.ipcRenderer.on('key:MediaNextTrack', _ => controller.next())
-electron.ipcRenderer.on('key:MediaPreviouseTrack', _ => controller.prev())
+electron.ipcRenderer.on('key:MediaPreviousTrack', _ => controller.prev())
 
 
 
@@ -689,7 +705,7 @@ worker.read('loader:end', _ => view.Node.loader.hidden = true)
 
 
 // Add default music folder
-if(!model.folders.includes(USER_MUSIC_PATH) && !('firstLaunch' in localStorage)) {
+if (!model.folders.includes(USER_MUSIC_PATH) && !('firstLaunch' in localStorage)) {
     model.addFolder(USER_MUSIC_PATH)
     localStorage.setItem('firstLaunch', false)
 }
