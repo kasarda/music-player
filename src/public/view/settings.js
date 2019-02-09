@@ -1,5 +1,5 @@
 const { createElement, createIcon, Icon, Ev } = require('../lib/common')
-
+const { debugInSettings } = require('../../config')
 
 class Settings {
     constructor(outlet, model, view, controller) {
@@ -68,6 +68,7 @@ class Settings {
             document.documentElement.dataset.theme = e.detail.value
         })
 
+
         return [
             createElement('h1', 'Settings'),
             createElement('h2', 'Folders to watch'),
@@ -88,12 +89,13 @@ class Settings {
                 text: 'Clear data',
                 ontrigger: _ => this.view.clearData()
             }),
-            createElement('h2', 'Debug'),
-            createElement('button', {
-                text: 'open dev tools',
-                ontrigger: _ => this.view.currentWindow.openDevTools()
-            })
-
+            createElement('', [
+                createElement('h2', 'Debug'),
+                createElement('button', {
+                    text: 'open dev tools',
+                    ontrigger: _ => this.view.currentWindow.openDevTools()
+                })
+            ], debugInSettings)
         ]
     }
 }

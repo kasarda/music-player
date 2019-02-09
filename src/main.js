@@ -64,12 +64,7 @@ app.on('activate', _ => {
 
 const { env } = require('./config')
 if (env === 'dev') {
-
-    app.on('ready', _ => {
-        mainWindow.webContents.openDevTools()
-    })
-
-    const chokidar = require('chokidar');
-    chokidar.watch(path.join(__dirname, 'public'))
-        .on('change', _ => mainWindow.reload())
+    const chokidar = require('chokidar')
+    app.on('ready', _ => mainWindow.webContents.openDevTools())
+    chokidar.watch(path.join(__dirname, 'public')).on('change', _ => mainWindow.reload())
 }

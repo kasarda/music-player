@@ -844,6 +844,7 @@ notification-component {
     position: absolute;
     right: 0px;
     bottom: 90px;
+    z-index: 99999999;
     animation: notification-in .2s ease-in 1;
 }
 

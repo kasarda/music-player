@@ -1,4 +1,5 @@
 module.exports = {
     env: 'dev',
-    version: '0.0.0'
+    debugInSettings: false,
+    version: '0.0.0' 
 }

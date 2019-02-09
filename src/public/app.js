@@ -15,7 +15,7 @@ const currentWindow = electron.remote.getCurrentWindow()
 
 const worker = new WebWorker('./core/watch.js')
 worker.send('app:init', USER_DATA_PATH)
-
+ 
 const Model = require('./core/model/main')
 const Controller = require('./core/controller')
 const View = require('./core/view')
