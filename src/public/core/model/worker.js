@@ -82,7 +82,7 @@ class WatchModel extends Model {
 
                 if (!isCoverExist) {
                     // watchWorker
-                    this.worker.send('add_cover', {
+                    this.worker.send('add:cover', {
                         path: filePath,
                         songs: [id]
                     })
@@ -104,7 +104,7 @@ class WatchModel extends Model {
                 }
                 else {
                     // watchWorker
-                    this.worker.send('push_cover', {
+                    this.worker.send('push:cover', {
                         path: filePath,
                         id
                     })

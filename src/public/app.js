@@ -12,9 +12,10 @@ const { Ev, Err, createElement, changeIcon, createIcon, Icon, toDurationString, 
 
 const USER_DATA_PATH = electron.remote.app.getPath('userData')
 const USER_MUSIC_PATH = electron.remote.app.getPath('music')
+const currentWindow = electron.remote.getCurrentWindow()
 
 const worker = new WebWorker('./core/watch.js')
-worker.send('init_data', USER_DATA_PATH)
+worker.send('app:init', USER_DATA_PATH)
 
 const Model = require('./core/model/main')
 const Controller = require('./core/controller')
@@ -27,7 +28,6 @@ const Search = require('./view/search')
 const Settings = require('./view/settings')
 const About = require('./view/about')
 
-const currentWindow = electron.remote.getCurrentWindow();
 const model = new Model(worker, USER_DATA_PATH)
 const controller = new Controller(model)
 const view = new View(model, controller, currentWindow)

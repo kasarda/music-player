@@ -4,7 +4,7 @@ const worker = new WebWorker()
 
 let model
 
-worker.read('init_data', data => {
+worker.read('app:init', data => {
     const Model = require('./model/worker')
     model = new Model(worker, data)
 })
@@ -89,14 +89,14 @@ worker.read('watch', async _ => {
 
 
 
-worker.read('add_folder', async ({ folder, exclude, playlistID }) => {
+worker.read('add:folder', async ({ folder, exclude, playlistID }) => {
     const files = await model.getSongsFromFolder(folder, exclude)
     createSongs(files, folder, playlistID)
 })
 
 
 
-worker.read('add_song', async ({ urls, folder, playlistID }) => {
+worker.read('add:song', async ({ urls, folder, playlistID }) => {
     createSongs(urls, folder, playlistID)
 })
 
@@ -111,7 +111,7 @@ async function createSongs(files, folder, playlistID) {
     chunk.onFull(songs => {
         worker.send('add', songs)
         if (playlistID) {
-            worker.send('add_to_playlist', {
+            worker.send('add:songToPlaylist', {
                 ids: songs.map(({ id }) => id),
                 playlistID
             })

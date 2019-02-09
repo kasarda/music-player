@@ -27,15 +27,15 @@ class MainModel extends Model {
                     this._updateSongMetadata(id, metadata)
             })
 
-            this.worker.read('add_cover', cover => {
+            this.worker.read('add:cover', cover => {
                 this.db.get('cover').push(cover).write()
             })
 
-            this.worker.read('push_cover', ({ path, id }) => {
+            this.worker.read('push:cover', ({ path, id }) => {
                 this.db.get('cover').find({ path }).get('songs').push(id).write()
             })
 
-            this.worker.read('add_to_playlist', ({ ids, playlistID }) => {
+            this.worker.read('add:songToPlaylist', ({ ids, playlistID }) => {
                 for (const id of ids)
                     this.addSongToPlaylist(id, playlistID)
             })
@@ -79,7 +79,7 @@ class MainModel extends Model {
             .filter(url => !this.isSongInDB({ path: url }))
 
         if (urls.length)
-            this.worker.send('add_song', { urls, folder, playlistID })
+            this.worker.send('add:song', { urls, folder, playlistID })
     }
 
     removeSong(songID) {
@@ -146,7 +146,7 @@ class MainModel extends Model {
                     this.dispatchEvent(Ev.ADD_FOLDER, folderURL)
 
                     // mainWorker
-                    this.worker.send('add_folder', {
+                    this.worker.send('add:folder', {
                         folder: folderURL,
                         exclude,
                         playlistID
