@@ -1,9 +1,8 @@
 /**
  * 
- * create name and fav icon
+ * create fav icon
  * README 
  * better sorting for example empty goes at the end and sort no of song by CD + fixed error when unknown is before known
- * rename singles for singels
  */
 const electron = require('electron')
 const WebWorker = require('kasarda/node/worker')
@@ -80,7 +79,7 @@ else
 
 
 
-/* Navigation */
+// Navigation
 view.Node.back.addEventListener('click', _ => outlet.history.back())
 
 view.Node.items.forEach(item => {
@@ -154,14 +153,9 @@ model.on(Ev.RENAME_PLAYLIST, (playlist, name) => {
 })
 
 
-const createPlaylistModal = view.Modal({
-    title: 'Create playlist',
-    label: 'Name',
-    confirm: 'Create'
-})
 
-view.Node.createPlaylist.addEventListener('click', _ => createPlaylistModal.open())
-createPlaylistModal.addEventListener('confirm', async e => {
+view.Node.createPlaylist.addEventListener('click', _ => view.createPlaylist())
+view.createPlaylistModal.addEventListener('confirm', async e => {
     const { id } = await model.addPlaylist(e.detail.value)
     outlet.render(Render.PLAYLIST(id), id)
 })
@@ -171,7 +165,7 @@ createPlaylistModal.addEventListener('confirm', async e => {
 
 
 
-/* Search */
+// Search
 void (_ => {
     let prevState = null
     view.Node.search.addEventListener('change', _ => {
@@ -207,7 +201,7 @@ void (_ => {
 
 
 
-/*Footer*/
+// Footer
 controller.on(Ev.LOAD, async _ => {
     const song = controller.currentSong
 
@@ -283,7 +277,7 @@ model.on(Ev.FAV, (id, added) => {
 
 
 
-/* Timeline */
+// Timeline
 const timeline = view.Timeline({
     state: 0,
     text: ['0:00', '0:00']
@@ -326,7 +320,7 @@ timeline.addEventListener('drag', e => {
 
 
 
-/*Controllers */
+// Controllers
 view.Node.play.addEventListener('click', _ => {
     if (controller.queue.length)
         controller.toggle()
@@ -366,7 +360,7 @@ function setRepeatIcon(type) {
             break
     }
 
-    if (type)
+    if (icon)
         changeIcon(view.Node.repeat, icon)
 }
 
@@ -380,11 +374,11 @@ function setshuffleIcon(shuffle) {
 
 setshuffleIcon(controller.shuffle)
 setRepeatIcon(controller.repeat)
-controller.on(Ev.REPEAT, type => setRepeatIcon(type))
+controller.on(Ev.REPEAT, repeat => setRepeatIcon(repeat))
 controller.on(Ev.SHUFFLE, shuffle => setshuffleIcon(shuffle))
 
 
-/*Options*/
+// Options
 const volume = view.Timeline({
     state: model.def.volume,
     icon: Icon.VOLUME_UP
@@ -392,10 +386,7 @@ const volume = view.Timeline({
 controller.setVolume(volume.state)
 view.Node.volume.appendChild(volume)
 
-volume.addEventListener('drag', e => {
-    controller.setVolume(e.detail.state)
-})
-
+volume.addEventListener('drag', e => controller.setVolume(e.detail.state))
 
 function updateVolumeIcon() {
     if (controller.volume === 0)
@@ -412,21 +403,18 @@ controller.on(Ev.VOLUME, _ => {
     updateVolumeIcon()
 })
 
-let prevVolume = .75
+let _prevVolume = .75
 volume.addEventListener('icon', _ => {
     if (controller.volume > 0) {
-        prevVolume = controller.volume
+        _prevVolume = controller.volume
         controller.setVolume(0)
     }
     else {
-        controller.setVolume(prevVolume)
+        controller.setVolume(_prevVolume)
     }
 })
 
-view.Node.queue.addEventListener('click', _ => {
-    outlet.render(Render.NOW_PLAYING)
-})
-
+view.Node.queue.addEventListener('click', _ => outlet.render(Render.NOW_PLAYING))
 
 view.Node.fullscreen.addEventListener('click', _ => fullscreen.toggle())
 controller.on([Ev.SET_QUEUE, Ev.ADD_QUEUE], _ => view.Node.fullscreen.classList.remove('fade'))
@@ -441,11 +429,8 @@ view.Node.closeFullscreen.addEventListener('click', _ => fullscreen.close())
 
 
 
-/*
-    Drag and drop
-*/
-
-window.addEventListener('drop', e => {
+// Drag & Drop
+addEventListener('drop', e => {
     e.preventDefault()
     document.body.classList.remove('drag')
 
@@ -498,12 +483,12 @@ window.addEventListener('drop', e => {
     })
 })
 
-window.addEventListener('dragover', e => {
+addEventListener('dragover', e => {
     e.preventDefault()
 })
 
 let _dragCounter = 0
-window.addEventListener('dragenter', e => {
+addEventListener('dragenter', e => {
     _dragCounter++
     document.body.classList.add('drag')
 
@@ -515,14 +500,14 @@ window.addEventListener('dragenter', e => {
 
 })
 
-window.addEventListener('dragleave', e => {
+addEventListener('dragleave', e => {
     _dragCounter--
     if (_dragCounter === 0)
         document.body.classList.remove('drag')
 })
 
 
-window.addEventListener('dragstart', e => {
+addEventListener('dragstart', e => {
     if (e.target.dataset.id)
         e.dataTransfer.setData('text/plain', e.target.dataset.id)
 })
@@ -531,41 +516,25 @@ window.addEventListener('dragstart', e => {
 
 
 
-/* Watch folders */
+// Watch folders
 worker.send('watch')
 
 
 
 
 
-/* Notifications */
-model.on(Ev.ADD_SONG_TO_PLAYLIST, _ => {
-    view.notification.open('Song added to the playlist')
-})
-
-model.on(Ev.ADD_PLAYLIST, _ => {
-    view.notification.open('Created playlist')
-})
-
-model.on(Ev.REMOVE_PLAYLIST, _ => {
-    view.notification.open('Playlist removed')
-})
-
-model.on(Ev.ADD_FOLDER, _ => {
-    view.notification.open('Adding songs from folder')
-})
-
+// Notifications
+model.on(Ev.ADD_SONG_TO_PLAYLIST, _ => view.notification.open('Song added to the playlist'))
+model.on(Ev.ADD_PLAYLIST, _ => view.notification.open('Created playlist'))
+model.on(Ev.REMOVE_PLAYLIST, _ => view.notification.open('Playlist removed'))
+model.on(Ev.ADD_FOLDER, _ => view.notification.open('Adding songs from folder'))
+controller.on(Ev.ERROR, _ => view.notification.open('Can\'t play current song'))
 model.onError(Ev.ADD_FOLDER, err => {
     if (err === Err.FOLDER_ALREADY_EXIST || err === Err.FOLDER_IS_SUB_FOLDER)
         view.notification.open('Folder already added')
     else
         view.notification.open('Can\'t add folder')
 })
-
-controller.on(Ev.ERROR, _ => {
-    view.notification.open('Can\'t play current song')
-})
-
 
 
 
@@ -575,7 +544,7 @@ controller.on(Ev.ERROR, _ => {
 
 
 // Keyboard shortcuts
-window.addEventListener('keydown', e => {
+addEventListener('keydown', e => {
     if (document.activeElement.tagName !== 'INPUT') {
 
         if (e.code !== 'Tab')
@@ -594,7 +563,6 @@ window.addEventListener('keydown', e => {
                 outlet.render(Render.ABOUT)
                 break
             case 'Space':
-                e.preventDefault()
                 if (controller.hasSrc)
                     controller.toggle()
                 break
@@ -633,7 +601,7 @@ window.addEventListener('keydown', e => {
                     view.Node.search.focus()
                     break
                 case 'KeyN':
-                    createPlaylistModal.open()
+                    view.createPlaylist()
                     break
                 case 'KeyO':
                     view.addFolder()
@@ -651,10 +619,8 @@ window.addEventListener('keydown', e => {
         if (e.altKey && e.code === 'F4')
             electron.remote.app.quit()
     }
-    else {
-        if ((e.ctrlKey && e.code !== 'KeyA') || e.altKey || e.metaKey || e.code.match(/^F.[0-9]{0,2}/))
-            e.preventDefault()
-    }
+    else if ((e.ctrlKey && e.code !== 'KeyA') || e.altKey || e.metaKey || e.code.match(/^F.[0-9]{0,2}/))
+        e.preventDefault()
 
     if (e.code === 'Escape' && document.activeElement.tagName === 'INPUT')
         document.activeElement.blur()
@@ -676,7 +642,7 @@ electron.ipcRenderer.on('key:MediaPreviousTrack', _ => controller.prev())
 
 
 
-/*Default rendering*/
+// Default rendering
 if (model.def.currentID && model.def.queue) {
     for (const songView in model.def.queue) {
         const queue = model.def.queue[songView]
@@ -685,7 +651,7 @@ if (model.def.currentID && model.def.queue) {
     controller.play(model.def.currentID, true)
 }
 
-window.addEventListener('beforeunload', _ => {
+addEventListener('beforeunload', _ => {
     if (view.writeDefData) {
         model.setDef({
             volume: volume.state,

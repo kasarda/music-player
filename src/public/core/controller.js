@@ -274,7 +274,7 @@ class Controller extends EventEmitter {
     }
 
     isCurrentView(name) {
-        if (name === 'nowPlaying')
+        if (name === Key.NOW_PLAYING)
             return true
 
         if (!this.current)
@@ -282,7 +282,7 @@ class Controller extends EventEmitter {
         return this.currentView === name
     }
 
-    isCurrentID(id) {
+    isCurrentID(id) { 
         return this.currentID === id
     }
 
@@ -592,6 +592,7 @@ class Controller extends EventEmitter {
         const to = Math.min(Math.max(0, (from + moveBy)), this._queue.length - 1)
         this._queue.splice(to, 0, this._queue.splice(from, 1)[0])
         this._update(this._queue)
+        // this.dispatchEvent(Ev.MOVE, moveBy, id)
     }
 
     _updateOriginal() {

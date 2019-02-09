@@ -13,12 +13,18 @@ class View {
     constructor(model, controller, currentWindow) {
         this.model = model
         this.controller = controller
+        this.currentWindow = currentWindow
+
         this.notification = this.Notification({
             time: 2000
         })
-        this.writeDefData = true
+        this.createPlaylistModal = this.Modal({
+            title: 'Create playlist',
+            label: 'Name',
+            confirm: 'Create'
+        })
 
-        this.currentWindow = currentWindow
+        this.writeDefData = true
 
         this.Node = {
             section: document.getElementById('content'),
@@ -29,19 +35,10 @@ class View {
             playlist: document.getElementById('playlist'),
             settings: document.getElementById('settings'),
             createPlaylist: document.getElementById('create-playlist'),
-            get items() {
-                return document.querySelectorAll('nav li[data-key]')
-            },
-            get playlistItems() {
-                return Array.from(this.playlist.querySelectorAll('li[data-key]'))
-            },
-            title: document.querySelector('#title'),
+            title: document.getElementById('title'),
             artist: document.querySelector('footer .artist'),
             cover: document.querySelector('footer .cover'),
             favParent: document.getElementById('fav'),
-            get fav() {
-                return this.favParent.firstElementChild
-            },
             timeline: document.getElementById('timeline-container'),
             play: document.getElementById('play'),
             shuffle: document.getElementById('shuffle'),
@@ -51,16 +48,24 @@ class View {
             volume: document.getElementById('volume'),
             queue: document.getElementById('queue'),
             fullscreen: document.getElementById('fullscreen'),
+            back: document.getElementById('back'),
+            loader: document.getElementById('loader'),
+            closeFullscreen: document.getElementById('close-fullscreen'),
             get outlet() {
                 return this.section.querySelector('outlet-component')
             },
             get playlistComponent() {
                 return this.section.querySelector('playlist-component')
             },
-            back: document.querySelector('#back'),
-            loader: document.querySelector('#loader'),
-            closeFullscreen: document.querySelector('#close-fullscreen')
-
+            get items() {
+                return document.querySelectorAll('nav li[data-key]')
+            },
+            get playlistItems() {
+                return Array.from(this.playlist.querySelectorAll('li[data-key]'))
+            },
+            get fav() {
+                return this.favParent.firstElementChild
+            }
         }
 
 
@@ -110,6 +115,7 @@ class View {
     Fullscreen() {
         return new Fullscreen(this.model, this, this.controller)
     }
+
     Menu() {
         if (process.platform === 'win32')
             return new Menu
@@ -125,10 +131,31 @@ class View {
         }
     }
 
+    removeFolder(folderURL) {
+        const modal = this.Modal({
+            title: `Are you sure you want to remove ${folderURL}?`,
+            type: 'confirm',
+            confirm: 'Remove'
+        })
+
+        modal.open()
+
+        return new Promise(resolve => {
+            modal.addEventListener('confirm', _ => {
+                this.model.removeFolder(folderURL)
+                resolve(true)
+            })
+        })
+    }
+
+    createPlaylist() {
+        this.createPlaylistModal.open()
+    }
+
     renamePlaylist(id) {
         const modal = this.Modal({
             title: 'Rename playlist',
-            label: 'Name',
+            label: 'New name',
             confirm: 'Rename'
         })
         modal.open()
@@ -149,23 +176,6 @@ class View {
 
         modal.addEventListener('confirm', _ => {
             this.model.removePlaylist(id)
-        })
-    }
-
-    removeFolder(folderURL) {
-        const modal = this.Modal({
-            title: `Are you sure you want to remove ${folderURL}?`,
-            type: 'confirm',
-            confirm: 'Remove'
-        })
-
-        modal.open()
-
-        return new Promise(resolve => {
-            modal.addEventListener('confirm', _ => {
-                this.model.removeFolder(folderURL)
-                resolve(true)
-            })
         })
     }
 

@@ -8,11 +8,7 @@ class Modal extends HTMLElement {
         type: 'input'
     }) {
         super()
-
-        this.confirmEvent = new CustomEvent('confirm', {
-            detail: {}
-        })
-
+        this.confirmEvent = new CustomEvent('confirm', { detail: {} })
 
         this.type = option.type
 
@@ -33,14 +29,16 @@ class Modal extends HTMLElement {
             }
         })
 
-        const closeIcon = createIcon(Icon.CLOSE, { className: Icon.size.SMALL })
-        closeIcon.addEventListener('click', _ => this.close())
-
         createElement('.modal', {
             append: this,
             className: this.type,
             child: [
-                closeIcon,
+                createIcon(Icon.CLOSE, {
+                    className: Icon.size.SMALL,
+                    on: {
+                        click: _ => this.close()
+                    }
+                }),
                 createElement('.modal-title', {
                     text: option.title
                 }),
@@ -72,7 +70,7 @@ class Modal extends HTMLElement {
         document.body.appendChild(this)
         this.input.value = ''
         this.input.focus()
-        document.body.onkeydown = ({code}) => {
+        document.body.onkeydown = ({ code }) => {
             if (code === 'Escape')
                 this.close()
         }
@@ -95,7 +93,6 @@ class Modal extends HTMLElement {
     onEscape({ code }) {
         if (code === 'Escape')
             this.close()
-            console.log('a')
     }
 }
 

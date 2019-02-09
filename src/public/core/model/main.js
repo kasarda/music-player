@@ -5,10 +5,10 @@ class MainModel extends Model {
     constructor(worker, USER_DATA_PATH) {
         super(worker, USER_DATA_PATH)
 
-        if (this.worker) {
-            if (!localStorage.key('theme'))
-                localStorage.setItem('theme', 'dark')
+        if (!localStorage.key('theme'))
+            localStorage.setItem('theme', 'dark')
 
+        if (this.worker) {
             this.worker.read('add', songs => {
                 const addedSongs = this._pushSongs(songs)
                 // this.db.read()
@@ -385,7 +385,7 @@ class MainModel extends Model {
     removeSongFromCover(id, path) {
         const songs = this.db.get('cover').find({ path }).get('songs')
         const songsValue = songs.value()
-        if(songsValue) {
+        if (songsValue) {
             songs.pull(id).write()
 
             const size = songsValue.length
@@ -570,7 +570,7 @@ class MainModel extends Model {
 
         songs.forEach(song => {
             const resultList = albums.map(albumObj => albumObj.name)
-            const no = parseFloat(`${song.metadata.disk.no || 1}`  + song.metadata.track.no)
+            const no = parseFloat(`${song.metadata.disk.no || 1}` + song.metadata.track.no)
 
             if (!song.metadata.album) {
                 unknown.push(song.id)

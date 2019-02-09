@@ -41,7 +41,7 @@ class Playlist extends HTMLElement {
             }
         }, 'playlist')
 
-        this.controller.on([Ev.SORT, Ev.SHUFFLE, Ev.ADD_QUEUE, Ev.REMOVE_QUEUE, Ev.PLAY_NEXT], _ => {
+        this.controller.on([Ev.SORT, Ev.SHUFFLE, Ev.SET_QUEUE, Ev.ADD_QUEUE, Ev.REMOVE_QUEUE, Ev.PLAY_NEXT], _ => {
             if (this.name === Key.NOW_PLAYING)
                 this.reset()
         }, 'playlist')
@@ -357,11 +357,15 @@ class Playlist extends HTMLElement {
                 {
                     title: 'Add to',
                     disabled: _ => !this.model.playlists.length,
-                    sub: this.model.playlists.map(playlist => ({
+                    sub: _ => [{
+                        title: 'Create Playlist',
+                        icon: Icon.ADD,
+                        onClick: _ => this.view.createPlaylist()
+                    }].concat(this.model.playlists.map(playlist => ({
                         title: _ => playlist.name,
                         disabled: _ => playlist.songs.includes(song.id),
                         onClick: _ => this.model.addSongToPlaylist(song.id, playlist.id)
-                    }))
+                    })))
                 },
                 {
                     visible: isPlaylist,
@@ -371,6 +375,16 @@ class Playlist extends HTMLElement {
                 {
                     title: 'Remove',
                     onClick: _ => song.folder ? this.model.disableSong(song.id) : this.model.removeSong(song.id)
+                },
+                {
+                    title: 'Move up',
+                    onClick: _ => this.controller.moveUp(song.id),
+                    visible: _ => this.name === Key.NOW_PLAYING
+                },
+                {
+                    title: 'Move Down',
+                    onClick: _ => this.controller.moveDown(song.id),
+                    visible: _ => this.name === Key.NOW_PLAYING
                 }
             ]
 

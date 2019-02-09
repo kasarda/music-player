@@ -241,9 +241,10 @@ function createElement(name = '', props = {
     prepend: null,
     ref: null,
     ontrigger: null
-}, condition = true) {
+}, condition) {
 
-    if (!condition)
+
+    if (arguments.length >= 3 && !condition)
         return null
 
     const selector = parseSelector(name)
@@ -365,14 +366,14 @@ function createElement(name = '', props = {
         }
     }
 
-    if(typeof props.ontrigger === 'function') {
+    if (typeof props.ontrigger === 'function') {
         element.addEventListener('click', e => props.ontrigger.call(element, e, element))
         element.addEventListener('keydown', e => {
-            if(e.code === 'Enter') {
+            if (e.code === 'Enter') {
                 props.ontrigger.call(element, e, element)
                 element.blur()
             }
-        })    
+        })
     }
 
     if (props.append) {
@@ -405,9 +406,11 @@ function parseElement(elementObject) {
 
 
 
-function createIcon(type, option) {
-    const icon = createElement('i.material-icons', option)
-    icon.innerText = type
+function createIcon(type, ...rest) {
+    const icon = createElement('i.material-icons', ...rest)
+
+    if (icon)
+        icon.innerText = type
 
     return icon
 }

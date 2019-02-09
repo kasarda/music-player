@@ -28,6 +28,7 @@ class Select extends HTMLElement {
         const disabled = this._getValue(option.disabled)
         const sub = this._getValue(option.sub)
         const visible = this._getValue(option.visible)
+        const icon = this._getValue(option.icon)
 
         if (!(visible === false)) {
             return createElement('.select-item', {
@@ -38,7 +39,7 @@ class Select extends HTMLElement {
                     createElement('.select-sup', {
                         child: sub.map(subOption => this._createItem(subOption))
                     })
-                ] : null,
+                ] : createIcon(icon, {}, !!icon),
                 on: {
                     click: e => {
                         if (typeof option.onClick === 'function' && !disabled) {
