@@ -116,7 +116,7 @@ class Songs {
                         text: collection.name || 'Unknown'
                     }),
                     createElement('article', {
-                        text: `${toPlural(collection.albums.length, 'album')} ${toPlural(collection.singels.length, 'single')}`
+                        text: `${toPlural(collection.albums.length, 'album')} ${toPlural(collection.singles.length, 'single')}`
                     })
                 ])
             ])

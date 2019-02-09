@@ -1,14 +1,19 @@
 {
-  "name": "music-player",
-  "title": "Music Player",
+  "name": "soundspot",
   "version": "0.0.0",
-  "description": "Music Player",
+  "description": "Sound spot is a music player run by electron",
+  "keywords": [
+    "music",
+    "player",
+    "sound", 
+    "beat",
+    "soundspot"
+  ],
   "main": "./src/main.js",
   "repository": "https://github.com/kasarda/music-player.git",
   "author": "Filip Kasarda <fkasarda@gmail.com>",
   "license": "GNU General Public License v3.0",
   "private": true,
-  "production": false,
   "scripts": {
     "start": "electron src/main.js",
     "pack": "electron-builder --dir",
@@ -27,8 +32,8 @@
     "open": "^0.0.5"
   },
   "build": {
-    "appId": "com.electron.music",
-    "productName": "Music Player",
+    "appId": "com.electron.soundspot",
+    "productName": "Sound Spot",
     "copyright": "GNU General Public License v3.0 © 2019 Filip Kasarda"
   }
 }

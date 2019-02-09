@@ -65,7 +65,7 @@ class Outlet extends HTMLElement {
                 if (item) {
                     return {
                         title: item.name,
-                        songs: this.model.getSongsByIDs(item.singels),
+                        songs: this.model.getSongsByIDs(item.singles),
                         collection: item,
                         type: 'artist'
                     }

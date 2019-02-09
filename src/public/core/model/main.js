@@ -653,7 +653,7 @@ class MainModel extends Model {
                             name: artist,
                             songs: [{ id, year, album, no }],
                             albums: album && isAlbumArtist ? [{ name: album, albumartist, year }] : [],
-                            singels: !album || !isAlbumArtist ? [id] : []
+                            singles: !album || !isAlbumArtist ? [id] : []
                         })
                     }
                     else {
@@ -663,7 +663,7 @@ class MainModel extends Model {
                             artistObject.albums.push({ name: album, albumartist, year })
                         }
                         else if (!album || !isAlbumArtist) {
-                            artistObject.singels.push(id)
+                            artistObject.singles.push(id)
                         }
                     }
                 })
@@ -683,7 +683,7 @@ class MainModel extends Model {
             sortedArtists.push({
                 albums: [],
                 name: null,
-                singels: unknown,
+                singles: unknown,
                 songs: unknown
             })
         }

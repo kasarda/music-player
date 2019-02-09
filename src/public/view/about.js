@@ -22,7 +22,7 @@ class Help {
             createElement('i', [
                 createElement('span', `version ${version}`),
                 createElement('', '© 2019 Filip Kasarda'),
-                createElement('span', 'See project on '),
+                createElement('span', 'See the project on '),
                 createElement('a', {
                     text: 'Github',
                     on: {
@@ -43,17 +43,17 @@ class Help {
                     ['F8', 'Volume on/off'],
                     ['Space', 'Play/Pause'],
                     ['Ctrl+P', 'Play/Pause'],
-                    ['Ctrl+R', 'Toggle Repeat song'],
+                    ['Ctrl+R', 'Toggle Repeat'],
                     ['Ctrl+S', 'Toggle Shuffle'],
-                    ['Ctrl+F', 'Focus on the search field'],
-                    ['Ctrl+L', 'Focus on the filter field'],
+                    ['Ctrl+F', 'Focus on search field'],
+                    ['Ctrl+L', 'Focus on filter field'],
                     ['Ctrl+N', 'Create new playlist'],
                     ['Ctrl+O', 'Open new folder'],
                     ['Ctrl+Q', 'Open now playing'],
                     ['Ctrl+Backspace', 'Browse Back'],
                     ['Ctrl+Arrow Right', 'Next Track'],
                     ['Ctrl+Arrow Left', 'Previous Track'],
-                    ['Ctrl+Arrow Up', 'Volume up'],
+                    ['Ctrl+Arrow Up', 'Volume Up'],
                     ['Ctrl+Arrow Down', 'Volume Down']
                 ]))
             ])
