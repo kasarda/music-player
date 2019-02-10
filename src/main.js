@@ -1,9 +1,9 @@
 const { app, BrowserWindow, ipcMain, globalShortcut } = require('electron')
 const path = require('path')
 const url = require('url')
-const WindowStateManager = require('electron-window-state-manager')
 const createDB = require('./public/lib/createDB')
 const State = require('./public/lib/state')
+const { minmax } = require('./public/lib/common')
 
 const USER_DATA_PATH = app.getPath('userData')
 createDB(USER_DATA_PATH)
@@ -55,38 +55,17 @@ function createWindow() {
 
     mainWindow.on('close', _ => {
         const { screen } = require('electron')
-
         const display = screen.getPrimaryDisplay().workAreaSize
-
-        let [width, height] = mainWindow.getSize()
-        let [x, y] = mainWindow.getPosition()
+        const { width, height, x, y } = mainWindow.getNormalBounds()
         const isMaximized = mainWindow.isMaximized()
-
-        if (isMaximized) {
-            width = state.data.width
-            height = state.data.height
-            x = state.data.x
-            y = state.data.y
-        }
-
-        if((width + x) > display.width)
-            x = ((width + x) - ((width + x) - display.width)) - width - 5
-
-        if ((height + y) > display.height)
-            y = ((height + y) - ((height + y) - display.height)) - height - 5
-
 
         state.setState({
             width,
             height,
-            x: Math.max(5, x),
-            y: Math.max(5, y),
+            x: minmax(0, display.width - width - 5, x),
+            y: minmax(0, display.height - height - 5, y),
             isMaximized
         })
-    })
-
-    mainWindow.on('maximize',  _ => {
-        console.log(mainWindow.getSize())
     })
 }
 

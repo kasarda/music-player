@@ -477,6 +477,10 @@ function isOverflow(target) {
     return width > parentWidth
 }
 
+function minmax(min, max, value) {
+    return Math.min(Math.max(min, value), max)
+}
+
 module.exports = {
     Ev, Err, Icon,
     createChunk,
@@ -493,5 +497,6 @@ module.exports = {
     parseElement,
     toPlural,
     getArraySurrounding,
-    isOverflow
+    isOverflow,
+    minmax
 }
