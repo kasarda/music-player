@@ -19,18 +19,21 @@ class Menu extends HTMLElement {
             append: this
         })
 
-        const maximizeButton = createElement('.menu-button', {
-            html: svg('maximize'),
+        this.maximizeButton = createElement('.menu-button', {
+            html: win.isMaximized() ? svg('unmaximize') : svg('maximize'),
             on: {
                 click: _ => {
-                    if (win.isMaximized())
+                    if (win.isMaximized()) {
                         win.unmaximize()
-                    else
+                        this.maximizeIcon()
+                    }
+                    else {
                         win.maximize()
+                        this.unmaximizeIcon()
+                    }
                 }
             }
         })
-
 
         createElement('.menu-container', {
             child: [
@@ -44,7 +47,7 @@ class Menu extends HTMLElement {
                             click: _ => win.minimize(),
                         }
                     }),
-                    maximizeButton,
+                    this.maximizeButton,
                     createElement('.menu-button.danger', {
                         html: svg('close'),
                         on: {
@@ -57,15 +60,19 @@ class Menu extends HTMLElement {
         })
 
 
-        win.on('maximize', _ => {
-            maximizeButton.innerHTML = svg('unmaximize')
-        })
+        win.on('maximize', _ => this.unmaximizeIcon())
+        win.on('unmaximize', _ => this.maximizeIcon())
 
-        win.on('unmaximize', _ => {
-            maximizeButton.innerHTML = svg('maximize')
-        })
 
         document.body.insertBefore(this, document.body.firstChild || null)
+    }
+
+    maximizeIcon() {
+        this.maximizeButton.innerHTML = svg('maximize')
+    }
+
+    unmaximizeIcon() {
+        this.maximizeButton.innerHTML = svg('unmaximize')
     }
 
 }

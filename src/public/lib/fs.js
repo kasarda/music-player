@@ -15,9 +15,11 @@ module.exports = {
                 else if (type === 'dir')
                     await this.mkdir(path, { recursive: true })
             }
+            return true
         }
         catch (err) {
             console.error(err)
+            return false
         }
     }
 }

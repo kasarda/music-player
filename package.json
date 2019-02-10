@@ -5,7 +5,7 @@
   "keywords": [
     "music",
     "player",
-    "sound", 
+    "sound",
     "beat",
     "soundspot"
   ],
@@ -21,10 +21,12 @@
   },
   "devDependencies": {
     "chokidar": "^2.1.0",
-    "electron": "^4.0.4", 
+    "electron": "^4.0.4",
     "electron-builder": "^20.38.5"
   },
   "dependencies": {
+    "electron-window-state": "^5.0.3",
+    "electron-window-state-manager": "^0.3.2",
     "kasarda": "^1.6.5",
     "lowdb": "^1.0.0",
     "mime": "^2.4.0",
