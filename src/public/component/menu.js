@@ -25,11 +25,11 @@ class Menu extends HTMLElement {
                 click: _ => {
                     if (win.isMaximized()) {
                         win.unmaximize()
-                        this.maximizeIcon()
+                        this._maximizeIcon()
                     }
                     else {
                         win.maximize()
-                        this.unmaximizeIcon()
+                        this._unmaximizeIcon()
                     }
                 }
             }
@@ -60,18 +60,18 @@ class Menu extends HTMLElement {
         })
 
 
-        win.on('maximize', _ => this.unmaximizeIcon())
-        win.on('unmaximize', _ => this.maximizeIcon())
+        win.on('maximize', _ => this._unmaximizeIcon())
+        win.on('unmaximize', _ => this._maximizeIcon())
 
 
         document.body.insertBefore(this, document.body.firstChild || null)
     }
 
-    maximizeIcon() {
+    _maximizeIcon() {
         this.maximizeButton.innerHTML = svg('maximize')
     }
 
-    unmaximizeIcon() {
+    _unmaximizeIcon() {
         this.maximizeButton.innerHTML = svg('unmaximize')
     }
 

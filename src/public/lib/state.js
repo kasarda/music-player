@@ -1,36 +1,44 @@
+const path = require('path')
 const electron = require('electron')
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 const fs = require('../lib/fs')
-const path = require('path')
 
 class State {
-    constructor(option = {}) {
-        this.option = Object.assign({
+    constructor(option = {
+        path: null,
+        file: null,
+        data: {}
+    }) {
+        this._option = Object.assign({
             path: electron.app.getPath('userData'),
             file: 'state.json',
             data: {},
         }, option)
 
-        this.DB_PATH = path.join(this.option.path, this.option.file)
+        this.DB_PATH = path.join(this._option.path, this._option.file)
         this._init()
 
 
-        if(this.db)
-            this.db.defaults(this.option.data).write()
+        if (this.db)
+            this.db.defaults(this._option.data).write()
     }
 
     get data() {
         try {
             return this.db.getState()
         }
-        catch(err) {
-            return this.option.data
+        catch (err) {
+            return this._option.data
         }
     }
 
+    get def() {
+        return this._option.data
+    }
+
     setState(state) {
-        const data = Object.assign(Object.assign({}, this.option.data), state)
+        const data = Object.assign(Object.assign({}, this._option.data), state)
         this.db.setState(data).write()
     }
 
@@ -49,28 +57,5 @@ class State {
         }
     }
 }
-
-
-
-// const state = new State({
-//     path: 'userData',
-//     file: 'data.json',
-//     data: {
-//         width: 100,
-//         height: 100,
-//         theme: 'dark'
-//     },
-//     maximize: true
-// })
-
-
-// state.save({
-//     width: window.width(),
-//     height: window.height(),
-//     x: window.x,
-//     y: window.y,
-//     theme: window.theme
-// })
-
 
 module.exports = State
