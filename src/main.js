@@ -4,6 +4,7 @@ const url = require('url')
 const createDB = require('./public/lib/createDB')
 const State = require('./public/lib/state')
 const { minmax } = require('./public/lib/common')
+const { env, icon } = require('./config')
 
 const USER_DATA_PATH = app.getPath('userData')
 createDB(USER_DATA_PATH)
@@ -29,6 +30,7 @@ function createWindow() {
         backgroundColor: '#191c1e',
         title: 'Sound Spot',
         frame: 'win32' === process.platform ? false : true,
+        icon: path.join(__dirname, icon),
         webPreferences: {
             nodeIntegrationInWorker: true,
             nodeIntegration: true,
@@ -97,8 +99,6 @@ app.on('activate', _ => {
 
 
 
-
-const { env } = require('./config')
 if (env === 'dev') {
     const chokidar = require('chokidar')
     app.on('ready', _ => mainWindow.webContents.openDevTools())

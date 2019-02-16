@@ -1,5 +1,6 @@
 module.exports = {
-    env: 'dev',
-    debugInSettings: true,
-    version: '0.0.0' 
+    env: 'prod',
+    debugInSettings: false,
+    version: '0.0.0',
+    icon: '../build/icon.png'
 }
