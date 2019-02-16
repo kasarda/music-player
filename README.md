@@ -1,5 +1,8 @@
-<h1 style="display: flex;align-items: center;">Sound Spot
-<img src="./build/icon.png" width=48 style="padding-left: 15px">
+<h1 style="display: flex;align-items: center;">
+<img src="./build/icon.png" width=48 style="padding-right: 15px">
+</div>
+    Sound Spot
+</div>
 </h1>
 
 <p>Sound spot is modern music player made with electron</p>
