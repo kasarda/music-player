@@ -5,7 +5,7 @@
 </div>
 </h1>
 
-<p>Sound spot is modern music player made with electron</p>
+<p><b>Sound spot</b> is modern music player made with electron</p>
 <img src="./docs/1.png">
 <img src="./docs/2.png">
 <img src="./docs/3.png">
